@@ -1,0 +1,56 @@
+    1  cd DO288/DO288/labs/
+    2  ls -ltr | grep php
+    3  cd ~/DO288/DO288-apps/
+    4  ls -ltr | grep php
+    5  cd -
+    6  cd expose-image/
+    7  ls -ltr
+    8  pwd
+    9  skopeo copy oci:///home/smitha/DO288/DO288/labs/expose-image/php-info docker://quay.io/sthrivik_00/php-info
+   10  skopeo delete docker://quay.io/sthrivik_00/php-info
+   11  skopeo copy oci:///home/smitha/DO288/DO288/labs/expose-image/php-info docker://quay.io/sthrivik_00/php-info --format=v2s1
+   12  oc project $-common
+   13  oc project $U-common
+   14  oc import-image --help | more
+   15  oc import-image php-info --from=quay.io/sthrivik_00/php-info:latest --confitm
+   16  oc import-image php-info --from=quay.io/sthrivik_00/php-info:latest --confirm
+   17  ls -ltr
+   18  cat create-secret.sh 
+   19  cat ${XDG_RUNTIME_DIR}/containers/auth.json
+   20  ./create-secret.sh 
+   21  oc import-image --help  | more
+   22  oc import-image php-info --from=quay.io/sthrivik_00/php-info:latest --confirm
+   23  oc import-image --help  | more
+   24  oc new-project $U-expose-image
+   25  oc new-app --name=php-info --image-stream=$U-common/php-info
+   26  oc expose svc/php-info
+   27  oc get route
+   28  curl php-info-edkqjw-expose-image.apps.ap46a.prod.ole.redhat.com
+   29  oc delete project $U-expose-imae
+   30  oc delete project $U-expose-image
+   31  oc project $U-common
+   32  oc get is
+   33  oc delete is/php-info
+   34  ls -ltr
+   35  cat grant-puller-role.sh 
+   36  cat push-image.sh 
+   37  history | grep import-image
+   38  oc import-image php-info --from=quay.io/sthrivik_00/php-info:latest --confirm --reference-poilcy=local
+   39  oc import-image --help  | more
+   40  oc import-image php-info --from=quay.io/sthrivik_00/php-info:latest --confirm --reference-policy=local
+   41  oc new-project ${RHT_OCP4_DEV_USER}-expose-image
+   42  ls -ltr
+   43  cat grant-puller-role.sh 
+   44  oc policy add-role-to-group --help | more
+   45  cat grant-puller-role.sh 
+   46  oc policy add-role-to-group --help | more
+   47  oc policy add-role-to-group --help 
+   48  cat grant-puller-role.sh 
+   49  oc policy add-role-to-group      -n ${RHT_OCP4_DEV_USER}-common system:image-puller     system:serviceaccounts:${RHT_OCP4_DEV_USER}-expose-image 
+   50  history | grep new-app
+   51  oc new-app --name=php-info --image-stream=$U-common/php-info
+   52  oc get pods
+   53  oc expose svc/php-info
+   54  oc get route
+   55  curl php-info-edkqjw-expose-image.apps.ap46a.prod.ole.redhat.com
+   56  history > ~/DO288/DO288-exercices/lab-ch03.txt

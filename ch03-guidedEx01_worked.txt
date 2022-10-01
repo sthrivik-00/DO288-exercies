@@ -1,0 +1,20 @@
+    1  cd ~/DO288/DO288/labs/external-registry/
+    2  ls -ltr
+    3  oc whoami
+    4  oc project
+    5  pwd
+    6  skopeo copy oci://home/smitha/DO288/DO288/labs/external-registry/ubi-sleep docker://quay.io/sthrivik_00/ubi_sleep:1.0
+    7* podman login quay.io 
+    8  skopeo copy oci://home/smitha/DO288/DO288/labs/external-registry/ubi-sleep docker://quay.io/sthrivik_00/ubi_sleep:1.0 --format=v2s1
+    9  oc login -u$U -p$P $A
+   10  oc get secret
+   11  ls -ltr
+   12  ./create-secret.sh 
+   13  oc secret link --help | more
+   14  oc secret link general quayio --for=pull
+   15  oc secrets link general quayio --for=pull
+   16  oc secrets link default quayio --for=pull
+   17  oc new-app --name=sleep --image=quay.io/sthrivik_00/ubi_sleep:1.0
+   18  oc get pods
+   19  oc logs pod/sleep-5d756cbc79-5lr8d
+   20  history > ~/DO288/DO288-exercices/ch03-guidedEx01_worked.txt 

@@ -1,0 +1,26 @@
+    1  oc project $U-build-app
+    2  cd DO288/DO288/labs/build-app/
+    3  ls -ltr
+    4  cat oc-new-app.sh 
+    5  oc new-app --name simple --build-env     npm_config_registry=http://invalid-server:8081/repository/nodejs     https://github.com/${RHT_OCP4_GITHUB_USER}/DO288-apps     --context-dir build-app
+    6  oc get bc
+    7  oc logs -f bc/simple
+    8  oc delete all --all
+    9  cat oc-new-app.sh 
+   10  grep NEXUS ~/.bashrc 
+   11  oc new-app --name simple --build-env     npm_config_registry=http://nexus-common.apps.ap46.prod.nextcle.com/repository/nodejs     https://github.com/${RHT_OCP4_GITHUB_USER}/DO288-apps     --context-dir build-app
+   12  oc logs -f bc/simple
+   13  oc expose svc/simple
+   14  oc get route
+   15  curl simple-edkqjw-build-app.apps.ap46a.prod.ole.redhat.com
+   16  oc get build
+   17  oc start-build bc/simple
+   18  oc logs -f bc/simple
+   19  curl simple-edkqjw-build-app.apps.ap46a.prod.ole.redhat.com
+   20  SECRET=$(oc get bc simple \
+-o jsonpath="{.spec.triggers[*].generic.secret}{'\n'}")
+   21  curl -X POST -k ${RHT_OCP4_MASTER_API}/apis/build.openshift.io/v1/namespaces/${RHT_OCP4_DEV_USER}-build-app/buildconfigs/simple/webhooks/$SECRET/generic
+   22  oc describe bc simple | more
+   23  echo $SECRET
+   24  curl -X POST -k ${RHT_OCP4_MASTER_API}/apis/build.openshift.io/v1/namespaces/${RHT_OCP4_DEV_USER}-build-app/buildconfigs/simple/webhooks/$SECRET/generic
+   25  history > ~/DO288/DO288-exercices/lab-ch04_not-working.txt 

@@ -1,0 +1,61 @@
+#TRIED TO MAKE APP AS DEPLOYMENT UNLIKE AS MENTIONED IN THE EXERCISE. ROLLBACK DOESNT WORK 
+
+    1  git checkout main
+    2  cd DO288/DO288-apps/
+    3  git checkout main
+    4  git checkout app-deploy
+    5  git push -u origin app-deploy
+    6  cd quip/src/main/java/com/redhat/training/example/
+    7  ls -ltr
+    8  vi Quip.java 
+    9  oc login -u$U -p$P $A
+   10  oc new-project $U-app-deploy
+   11  oc new-app --name=quip --build-env MAVEN_MIRROR_URL=http://${RHT_OCP4_NEXUS_SERVER}/repository/java -i redhat-openjdk18-openshift:1.5 https://github.com/sthrivik-00/DO288-apps#app-deploy --context-dir=quip
+   12  oc logs -f bc/quip
+   13  oc get pods
+   14  oc expose svc/quip
+   15  oc get route
+   16  curl quip-edkqjw-app-deploy.apps.ap46a.prod.ole.redhat.com
+   17  oc get dc
+   18  oc get deployment
+   19  oc set probe --help | more
+   20  oc set probe deployment/quip --readiness --liveness --get-url=http://:8080/ready --initial-delay-secongs=30 --timeout-seconds=2
+   21  oc set probe deployment/quip --readiness --liveness --get-url=http://:8080/ready --initial-delay-seconds=30 --timeout-seconds=2
+   22  oc describe deployment/quip | grep -i liveness
+   23  oc describe deployment/quip | grep -i readiness
+   24  oc get pods
+   25  oc describe pod/quip-6944fd58b-2pzqh | more
+   26  oc describe pod/quip-6944fd58b-2pzqh | grep -i liveness
+   27  oc describe pod/quip-6944fd58b-2pzqh | grep -i readiness
+   28  curl quip-edkqjw-app-deploy.apps.ap46a.prod.ole.redhat.com
+   29  cd ~/DO288/DO288/labs/app-deploy/
+   30  ls -ltr
+   31  cat app-change.sh 
+   32  cd ~/DO288/DO288-apps/quip/
+   33  vi src/main/java/com/redhat/training/example/Quip.java 
+   34  git status
+   35  git branch
+   36  git add src/main/java/com/redhat/training/example/Quip.java
+   37  git commit -m "Changed Quip.java to English greeting"
+   38  git push
+   39  oc get pods
+   40  oc get build
+   41  oc get bc
+   42  oc start-build quip
+   43  oc logs -f bc/quip
+   44  curl quip-edkqjw-app-deploy.apps.ap46a.prod.ole.redhat.com
+   45  oc get pods
+   46  curl quip-edkqjw-app-deploy.apps.ap46a.prod.ole.redhat.com
+   47  oc rollback --help | more
+   48  oc get deployment
+   49  oc rollback deployment/quip
+   50  oc get pods
+   51  oc rollback quip
+   52  oc rollback --help | more
+   53  oc rollback quip --to-version=1
+   54  oc get dc
+   55  oc get deploy
+   56  oc rollback deploy/quip
+   57  oc get all
+   58  oc rollback deployment.apps/quip
+   59  history > ~/DO288/DO288-exercices/ch07-guidedEx03_deployment_not_working.txt

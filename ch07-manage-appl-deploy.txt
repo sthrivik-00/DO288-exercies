@@ -1,0 +1,48 @@
+    1  oc new-project $U-app-deploy
+    2  git checkout app-deploy
+    3  oc new-app --name=quip --as-deployment-config --build-env=MAVEN_MIRROR_URL=http://${RHT_OCP4_NEXUS_SERVER}/repository/java -i=redhat-openjdk18-openshift:1.5 https://github.com/sthrivik-00/DO288-apps#app-deploy --context-dir=quip
+    4  oc logs -f bc/quip
+    5  oc get pods
+    6  oc describe svc/quip | grep Endpoint
+    7  oc expose svc/quip
+    8  oc get route --no-hearders | cut -d "" -f4
+    9  oc get route --no-hearders | cut -d"" -f4
+   10  oc get route --no-headers | cut -d"" -f4
+   11  oc get route --no-headers | cut -d" " -f4
+   12  ROUTE=`oc get route --no-headers | cut -d" " -f4`
+   13  curl $ROUTE
+   14  oc set probe dc/quip --liveness --readiness --get-url=http://:8080/ready --initial-delay-seconds=30 --timeout-seconds=2 
+   15  oc describe dc/quip | grep http
+   16  oc get pods
+   17  oc get pods | grep -v build | grep -v deploy
+   18  oc get pods
+   19  oc describe pod/quip-2-b9np6 | grep http
+   20  curl $ROUTE
+   21  ls -ltr
+   22  sed -i 's/I came, I saw, I conquered/Veni, vidi, vici/g` Quip.java
+   23  sed -i 's/I came, I saw, I conquered/Veni, vidi, vici/g' Quip.java 
+   24  vi Quip.java 
+   25  pwd
+   26  cd ~/DO288/DO288-apps/qu
+   27  cd ~/DO288/DO288-apps/quip/
+   28  git status
+   29  git commit src/main/java/com/redhat/training/example/Quip.java -m "Changed quip language back to Roman"
+   30  git status
+   31  git push
+   32  oc get pods
+   33  oc get build
+   34  oc start-build quip
+   35  oc logs -f build/quip
+   36  oc get build
+   37  oc logs -f build/quip-2
+   38  oc get pods | grep -v build | grep -v deploy
+   39  curl $ROUTE
+   40  oc get dc
+   41  oc rollback dc/quip
+   42  oc get build
+   43  oc get pods
+   44  oc get dc
+   45  oc get pods | grep -v build | grep -v deploy
+   46  curl $ROUTE
+   47  cd ../
+   48  history > ch07-manage-appl-deploy.txt 

@@ -1,0 +1,82 @@
+    1  cd DO288/DO288/labs/multicontainer-review/
+    2  ls -ltr
+    3  helm create exochart
+    4  cd exochart/
+    5  ls -ltr
+    6  tree .
+    7  vi values.yaml 
+    8  vi Chart.yaml 
+    9  helm dependency update
+   10  vi templates/deployment.yaml 
+   11  vi values.yaml 
+   12  oc projects
+   13  oc new-project $U-multicontainer-review
+   14  find . -name "*" | xargs grep -l exoplanets
+   15  vi values.yaml 
+   16  head -10 values.yaml 
+   17  skopeo inspect docker://quay.io/redhattraining/exoplanets | more
+   18  helm install exoplanets .
+   19  oc get deploy
+   20  oc get pods
+   21  oc get svc
+   22  oc expose svc/exoplanets-exochart
+   23  oc get route
+   24  curl exoplanets-exochart-edkqjw-multicontainer-review.apps.ap46a.prod.ole.redhat.com
+   25  cd ..
+   26  mkdir exokustom
+   27  cd exokustom/
+   28  mkdir base
+   29  helm template exoplanets ../exochart > base/deployment.yaml
+   30  vi base/deployment.yaml 
+   31  vi base/kustomization.yaml
+   32  mkdir overlays/test
+   33  mkdir -p overlays/test
+   34  vi overlays/test/replica_limits.yaml
+   35  vi overlays/test/kustomization.yaml
+   36  oc apply -k overlays/test/
+   37  vi overlays/test/kustomization.yaml
+   38  oc apply -k overlays/test/
+   39  vi overlays/test/kustomization.yaml
+   40  rm overlays/test/kustomization.yaml 
+   41  vi overlays/test/kustomization.yaml
+   42  oc apply -k overlays/test/
+   43  oc apply -k overlays/test
+   44  vi overlays/test/replica_limits.yaml 
+   45  vi base/kustomization.yaml 
+   46  oc apply -k base
+   47  oc apply -k overlays/test/
+   48  vi overlays/test/replica_limits.yaml 
+   49  cat overlays/test/replica_limits.yaml 
+   50  which kustomize
+   51  cat overlays/test/kustomization.yaml 
+   52  tree .
+   53  rm -rf *
+   54  mkdir base
+   55  ls -ltr ..
+   56  ls -ltr ../exochart/
+   57  helm template exoplanets ../exochart > base/deployment.yaml
+   58  tree .
+   59  cat base/deployment.yaml 
+   60  vi kustomization.yaml
+   61  mkdir -p overlays/test
+   62  vi overlays/test/replica_limits.yaml
+   63  vi overlays/test/kustomization.yaml
+   64  oc apply -k overlays/test
+   65  cat overlays/test/kustomization.yaml 
+   66  ls -ltr
+   67  cat kustomization.yaml 
+   68  mv kustomization.yaml base/
+   69  oc apply -k overlays/test
+   70  history > lab06_not_working.txt
+
+
+ERROR:
+-----
+
+[smitha@localhost exokustom]$ oc apply -k overlays/test
+error: trouble configuring builtin PatchStrategicMergeTransformer with config: `
+paths:
+- replica_limits.yaml
+`: yaml: line 2: mapping values are not allowed in this context
+
+

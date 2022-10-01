@@ -1,0 +1,51 @@
+apiVersion: build.openshift.io/v1
+kind: BuildConfig
+metadata:
+  annotations:
+    openshift.io/generated-by: OpenShiftNewApp
+  creationTimestamp: "2022-08-22T06:34:15Z"
+  labels:
+    app: detail
+    app.kubernetes.io/component: detail
+    app.kubernetes.io/instance: detail
+  name: detail
+  namespace: rdc-no-template
+  resourceVersion: "124149490"
+  selfLink: /apis/build.openshift.io/v1/namespaces/rdc-no-template/buildconfigs/detail
+  uid: eba99220-afe0-4391-99f4-6b5c95fc6f40
+spec:
+  failedBuildsHistoryLimit: 5
+  nodeSelector: null
+  output:
+    to:
+      kind: ImageStreamTag
+      name: detail:latest
+  postCommit: {}
+  resources: {}
+  runPolicy: Serial
+  source:
+    contextDir: php-detail
+    git:
+      uri: https://gitlab.com/rgdacosta/ocp-apps.git
+    type: Git
+  strategy:
+    sourceStrategy:
+      from:
+        kind: ImageStreamTag
+        name: php:7.3-ubi8
+        namespace: openshift
+    type: Source
+  successfulBuildsHistoryLimit: 5
+  triggers:
+  - github:
+      secret: Mld7_v45VARhZbE6tDDL
+    type: GitHub
+  - generic:
+      secret: YU1ojDuLa1Y11tIgj0pB
+    type: Generic
+  - type: ConfigChange
+  - imageChange:
+      lastTriggeredImageID: image-registry.openshift-image-registry.svc:5000/openshift/php@sha256:35ebf58045d740f1c9082c71e1a581fa093881fbe5d88f7da149d46034625757
+    type: ImageChange
+status:
+  lastVersion: 1

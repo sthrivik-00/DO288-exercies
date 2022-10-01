@@ -1,0 +1,49 @@
+    1  cd ~/DO288/DO288-apps/
+    2  git checkout main
+    3  git branch
+    4  git branch --delete manage-deploy
+    5  git checkout -b manage-deploy
+    6  git push -u origin main
+    7  git pull
+    8  git push -u origin main
+    9  git pull origin manage-deploy
+   10  git push -u origin main
+   11  git branch
+   12  git branch --delete manage-deploy
+   13  git checkout origin
+   14  git branch --delete manage-deploy
+   15  git branch -D manage-deploy
+   16  git checkout -b manage-deploy
+   17  git push -u origin manage-deploy
+   18  oc new-project $U-manage-deploy
+   19  oc new-app --as-deployment-config --name=scale php:7.3~https://github.com/sthrivik-00/DO288-apps#manage-deploy --context-dir=php-scale 
+   20  oc logs -f buildconfig/scale
+   21  oc get pods
+   22  oc expose svc/scale
+   23  oc get route
+   24  curl scale-edkqjw-manage-deploy.apps.ap46a.prod.ole.redhat.com
+   25  oc scale --help | more
+   26  oc whoami --show-console
+   27  echo $U
+   28  echo $P
+   29  oc get pods
+   30  curl scale-edkqjw-manage-deploy.apps.ap46a.prod.ole.redhat.com
+   31  cd php-scale/
+   32  ls -ltr
+   33  vi index.php 
+   34  git status
+   35  git add index.php
+   36  git commit -m "Modified version number in index.php"
+   37  git push
+   38  oc get build
+   39  oc get bc
+   40  oc start-build scale
+   41  oc logs -f bc/scale
+   42  oc get pod
+   43  oc logs -f bc/scale
+   44  oc get pod
+   45  curl scale-edkqjw-manage-deploy.apps.ap46a.prod.ole.redhat.com
+   46  oc rollback dc/scale
+   47  oc get pod
+   48  curl scale-edkqjw-manage-deploy.apps.ap46a.prod.ole.redhat.com
+   49  history > ~/DO288/DO288-exercices/lab-ch07.txt

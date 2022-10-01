@@ -1,0 +1,43 @@
+    1  cd ~/DO288/DO288/labs/expose-image/
+    2  ls -ltr
+    3  pwd
+    4  podman login quay.io
+    5  cat /run/user/1000/containers/auth.json 
+    6  podman logout default-route-openshift-image-registry.apps.na46a.prod.ole.redhat.com
+    7  cat /run/user/1000/containers/auth.json 
+    8  pwd
+    9  skopeo copy oci:/home/smitha/DO288/DO288/labs/expose-image/php-info docker://quay.io/sthrivik_00/php-info --format=v2s1
+   10  skopeo inspect docker://quay.io/sthrivik_00/php-info | more
+   11  oc project
+   12  oc login -u$U -p$P $A
+   13  oc project $U-common
+   14  oc get all
+   15  oc delete is/php-info
+   16  oc import-image php-info --from=quay.io/sthrivik_00/php-info --confirm --reference-policy local
+   17  oc get describe is/php-info
+   18  oc describe is/php-info
+   19  oc create secret feneric quayio --from-file .dockerconfigjson=/run/user/1000/containers/auth.json --type=kubernetes.io/dockerconfigjson
+   20  cat create-secret.sh 
+   21  oc create secret generic quayio --from-file .dockerconfigjson=/run/user/1000/containers/auth.json --type=kubernetes.io/dockerconfigjson
+   22  oc delete secret quayio
+   23  oc create secret generic quayio --from-file .dockerconfigjson=/run/user/1000/containers/auth.json --type=kubernetes.io/dockerconfigjson
+   24  oc secret link default quayio --for=pull
+   25  oc get istag
+   26  oc new-project $U-expose-image
+   27  oc policy --help | more
+   28  oc policy add-role-to-group --help | more
+   29  cat grant-puller-role.sh 
+   30  oc policy --h
+   31  oc create policy --help
+   32  oc create policy --help | more
+   33  oc policy --help | more
+   34  oc policy add-role-to-group -n $U-common system:image-puller system:serviceaccounts:${RHT_OCP4_DEV_USER}-expose-image
+   35  oc get poolicy
+   36  oc get policy
+   37  oc get route -n $U-common
+   38  oc get route -n openshift-image-registry
+   39  oc new-app --name=info default-route-openshift-image-registry.apps.na46a.prod.ole.redhat.com/$U-common/php-info
+   40  oc expose svc/info
+   41  oc get route
+   42  curl info-mbtacz-expose-image.apps.na46a.prod.ole.redhat.com
+   43  history > ~/DO288/DO288-exercices/ch03lab.txt

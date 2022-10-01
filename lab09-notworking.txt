@@ -1,0 +1,100 @@
+    1  oc login -u$U -p$P $A
+    2  oc new-project ${RHT_OCP4_DEV_USER}-micro-java
+    3  cd ~/DO288/DO288-apps/micro-java/
+    4  git checkout -b micro-config
+    5  git push -u origin micro-config
+    6  ls -ltr
+    7  vi src/main/java/com/redhat/training/openshift/hello/HelloResource.java 
+    8  ls -ltr
+    9  vi pom.xml 
+   10  git status
+   11  git restore pom.xml
+   12  vi pom.xml 
+   13  pwd
+   14  vi src/main/jkube/cm.yml 
+   15  git restore pom.xml
+   16  cd ..
+   17  git status
+   18  git checkout main
+   19  git status
+   20  git checkout origin
+   21  git status
+   22  git pull
+   23  git status
+   24  git checkout main
+   25  git status
+   26  oc new-project ${RHT_OCP4_DEV_USER}-review-todo
+   27  oc login -u $U -p$P $A
+   28  oc new-project ${RHT_OCP4_DEV_USER}-review-todo
+   29  oc projects
+   30  ls -ltr
+   31  cd 
+   32  ls -ltr
+   33  ls -ltr DO288/DO288/solutions/review-todo/
+   34  ls -ltr DO288/DO288/solutions/review-todo/todo-list/
+   35  cd DO288/
+   36  ls -ltr
+   37  helm install todo-list
+   38  helm create todo-list
+   39  tree todo-list/
+   40  cd todo-list/
+   41  vi Chart.yaml 
+   42  vi templates/deployment.yaml 
+   43  vi values.yaml 
+   44  find . -name "*" | xargs grep depend
+   45  vi Chart.yaml 
+   46  cd ../DO288/
+   47  find . -name Chart.yaml
+   48  vi labs/multicontainer-helm/famouschart/Chart.yaml 
+   49  cd -
+   50  vi Chart.yaml 
+   51  tail -10 ../DO288/labs/multicontainer-helm/famouschart/Chart.yaml 
+   52  vi Chart.yaml 
+   53  tai l-5 Chart.yaml 
+   54  tail -5 Chart.yaml 
+   55  tree .
+   56  vi ../DO288/labs/multicontainer-helm/famouschart/values.yaml 
+   57  vi values.yaml 
+   58  tail -10 ../DO288/labs/multicontainer-helm/famouschart/values.yaml
+   59  vi values.yaml 
+   60  cd ../DO288/labs/multicontainer-helm/famouschart
+   61  grep -r port *
+   62  cd -
+   63  vi values.yaml 
+   64  helm dependancy update
+   65  helm dependency update
+   66  helm install todo-list
+   67  cd ../DO288-exercices/
+   68  grep "helm install" *
+   69  cd -
+   70  helm install todo-list .
+   71  oc get bc
+   72  oc get build
+   73  oc get all
+   74  cd ../DO288/labs/multicontainer-helm/famouschart/
+   75  vi Chart.
+   76  ls -ltr
+   77  vi Chart.yaml 
+   78  vi templates/deployment.yaml 
+   79  grep -r quay *
+   80  vi values.yaml 
+   81  cd -
+   82  vi values.yaml 
+   83  oc delete all --all
+   84  helm install todo-list .
+   85  oc get all
+   86  helm install todo-list2 .
+   87  oc get all
+   88  oc get pods
+   89  oc get svc
+   90  oc expose svc/todo-list2
+   91  oc get route
+   92  firefox todo-list2-edkqjw-review-todo.apps.ap46a.prod.ole.redhat.com
+   93  firefox todo-list2-edkqjw-review-todo.apps.ap46a.prod.ole.redhat.com &
+   94  curl todo-list2-edkqjw-review-todo.apps.ap46a.prod.ole.redhat.com
+   95  history > ~/DO288/DO288-exercices/lab09-notworking.txt
+    1  helm --help
+    2  helm --help | more
+    3  helm uninstall todo-list
+    4  helm uninstall todo-list2
+    5  history >> ~/DO288/DO288-exercices/lab09-notworking.txt 

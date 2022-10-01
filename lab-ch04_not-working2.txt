@@ -1,0 +1,26 @@
+    1  oc new-project $U-build-app
+    2  cd DO288/DO288/labs/build-app/
+    3  ls -ltr
+    4  cat oc-new-app.sh 
+    5  oc new-app --name simple --build-env     npm_config_registry=http://invalid-server:8081/repository/nodejs     https://github.com/${RHT_OCP4_GITHUB_USER}/DO288-apps     --context-dir build-app
+    6  oc get bc
+    7  oc logs -f bc/simple
+    8  oc edit bc/simple
+    9  cat ~/.bashrc | grep NEXUS
+   10  oc edit bc/simple
+   11  oc get build
+   12  oc start-build simple
+   13  oc logs -f bc/simple
+   14  oc expose svc/simple
+   15  oc get route
+   16  curl simple-edkqjw-build-app.apps.ap46a.prod.ole.redhat.com
+   17  oc get bc/simple | grep Webhook
+   18  oc get bc/simple | grep trigger
+   19  oc get bc/simple | more
+   20  oc get bc/simple -o json | more
+   21  oc get bc/simple -o json | grep -A7 -i trigger 
+   22  oc get bc/simple -o json | more
+   23  cat oc-new-app.sh 
+   24  curl -X POST -k ${RHT_OCP4_MASTER_API}/apis/build.openshift.io/v1/namespaces/${RHT_OCP4_DEV_USER}-build-app/buildconfigs/simple/webhooks/z7T-rCWyEZdNNJY1jknC/generic
+   25  oc get bc simple -o jsonpath="{.spec.triggers[*].generic.secret}{'\n'}"
+   26  history > ~/DO288/DO288-exercices/lab-ch04_not-working2.txt 

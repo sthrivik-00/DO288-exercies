@@ -1,0 +1,46 @@
+    1  oc project ${RHT_OCP4_DEV_USER}-external-service
+    2  oc new-project ${RHT_OCP4_DEV_USER}-external-service
+    3  oc status
+    4  ls -l | grep extern
+    5  cd ../DO288/labs/
+    6  ls -l | grep extern
+    7  cd external-service/
+    8  ls -ltr
+    9  cat oc-new-app.sh 
+   10  cat expose-app.sh 
+   11  ls -ltr ../../solutions/ | grep exter
+   12  ./oc-new-app.sh 
+   13  oc project
+   14  oc status
+   15  oc logs -f build/todoapp-1
+   16  oc delete all --all
+   17  oc get all
+   18  oc get is
+   19  vi oc-new-app.sh 
+   20  vi ~/.bashrc 
+   21  vi oc-new-app.sh 
+   22  echo $RHT_OCP4_GITHUB_USER
+   23  cat oc-new-app.sh 
+   24  cat ~/.bashrc 
+   25  cat oc-new-app.sh 
+   26  oc new-app  --as-deployment-config --name todoapp     --build-env npm_config_registry=http://nexus-common.apps.ap46.prod.nextcle.com/repository/nodejs     -e DATABASE_NAME=todo     -e DATABASE_SVC=tododb     -e DATABASE_USER=todoapp     -e DATABASE_PASSWORD=redhat123     -e DATABASE_INIT=false     --context-dir todo-single     nodejs:12~https://github.com/sthrivik-00//DO288-apps
+   27  oc get pod
+   28  oc rsh todoapp-1-6z6qg env | grep DATABASE
+   29  oc rsh todoapp-1-d6qbc env
+   30  oc rsh todoapp-1-d6qbc env | grep DATABASE
+   31  HOSTNAME=$(oc get route todoapp \
+-o jsonpath='{.spec.host}')
+   32  oc get svc
+   33  oc expose svc/todoapp
+   34  HOSTNAME=$(oc get route todoapp \
+-o jsonpath='{.spec.host}')
+   35  echo $HOSTNAME
+   36  curl -si http://${HOSTNAME}/todo/api/items/6
+   37  dbhost=$(echo \
+mysql.ocp-${RHT_OCP4_WILDCARD_DOMAIN#"apps."})
+   38  echo $dbhost
+   39  mysqlshow -h${dbhost} -utodoapp -predhat123 todo
+   40  oc create svc externalname tododb --external-name ${dbhost}
+   41  oc get svc
+   42  curl -si http://${HOSTNAME}/todo/api/items/6
+   43  history > ch08_external_service.txt

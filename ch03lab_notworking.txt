@@ -1,0 +1,23 @@
+#oc import-image gives error
+
+    1  cd ~/DO288/DO288/labs/expose-image/
+    2  ls -ltr
+    3  pwd
+    4  skopeo copy oci:/home/smitha/DO288/DO288/labs/expose-image/php-info docker://quay.io/sthrivik_00/php-info
+    5  oc new-project $U-common
+    6  oc import-image php-info --from=quay.io/sthrivik_00/php-info --confirm --reference-policy=true
+    7  oc create secret generic quayio --from-file .dockerconfigjson=/run/user/1000/containers/auth.json --type=kubernetes.io/dockerconfigjson
+    8  oc secret link default quayio --for=pull
+    9  oc import-image php-info --from=quay.io/sthrivik_00/php-info --confirm --reference-policy=true
+   10  oc get is
+   11  oc delete is/php-info
+   12  oc import-image php-info --from=quay.io/sthrivik_00/php-info --confirm --reference-policy=true
+   13  oc delete is/php-info
+   14  oc get is
+   15  oc project trial
+   16  oc delete project $U-common
+   17  oc new-project $U-common
+   18  oc create secret generic quayio --from-file .dockerconfigjson=/run/user/1000/containers/auth.json --type=kubernetes.io/dockerconfigjson
+   19  oc secret link default quayio --for=pull
+   20  oc import-image php-info --from=quay.io/sthrivik_00/php-info --confirm --reference-policy=true
+   21  history > ~/DO288/DO288-exercices/ch03lab_notworking.txt 

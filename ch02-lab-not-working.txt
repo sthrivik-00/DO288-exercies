@@ -1,0 +1,68 @@
+    1  cd
+    2  cd ~/DO288/DO288-apps/
+    3  git checkout -b design-container
+    4  git push -u origin design-container
+    5  oc new-project $U-design-container
+    6  oc new-app --name=hello-java https://github.com/sthrivik-00/DO288-apps#design-container --context-dir=hello-java 
+    7  cd hello-java/
+    8  ls -ltr
+    9  cat run-app.sh 
+   10  cat app-src/
+   11  ls -l app-src/src/
+   12  podman build --fomat=docker --layers=false -t quay.io/sthrivik_00/do288-hello-java
+   13  podman build --format=docker --layers=false -t quay.io/sthrivik_00/do288-hello-java
+   14  podman build --format=docker --layers=false -t quay.io/sthrivik_00/do288-hello-java .
+   15  podman images
+   16  podman push quay.io/sthrivik_00/do288-hello-java
+   17  oc new-app --name=hello-java --image=quay.io/sthrivik_00/do288-hello-java
+   18  oc get pods
+   19  vi Containerfile 
+   20  oc get pods
+   21  vi Containerfile 
+   22  git status
+   23  git add Containerfile 
+   24  git commit "Changed Container file for CH02 Lab"
+   25  git commit -m "Changed Container file for CH02 Lab"
+   26  git push
+   27  git push --set-upstream origin design-container
+   28  cd ..
+   29  git status
+   30  cd -
+   31  git pull
+   32  git branch --set-upstream-to=origin design-container
+   33  cd ..
+   34  git branch --set-upstream-to=origin design-container
+   35  git checkout branch design-container
+   36  git checkout design-container
+   37  git push -u origin design-container
+   38  git pull
+   39  git pull origin design-container
+   40  cd hello-
+   41  cd hello-java/
+   42  vi Containerfile 
+   43  git status
+   44  git add Containerfile 
+   45  history | grep commit
+   46  git commit -m "Changed Container file for CH02 Lab"
+   47  git push
+   48  git push --set-upstream origin design-container
+   49  oc get deployment
+   50  oc delete all --selector app=hello-java
+   51  oc get all
+   52  podman images
+   53  podman rmi quay.io/sthrivik_00/do288-hello-java
+   54  history | grep build
+   55  podman build --format=docker --layers=false -t quay.io/sthrivik_00/do288-hello-java .
+   56  vi Containerfile 
+   57  history | grep git
+   58  git commit -m "Changed Container file for CH02 Lab to remove === that came while setting branch right"
+   59  git add Containerfile 
+   60  git commit -m "Changed Container file for CH02 Lab to remove === that came while setting branch right"
+   61  git push
+   62  podman build --format=docker --layers=false -t quay.io/sthrivik_00/do288-hello-java .
+   63  history | grep new-app
+   64  podman images
+   65  podman push quay.io/sthrivik_00/do288-hello-java
+   66  oc new-app --name=hello-java --image=quay.io/sthrivik_00/do288-hello-java
+   67  oc get pods
+   68  history > ~/DO288/DO288-exercices/ch02-lab-not-working.txt

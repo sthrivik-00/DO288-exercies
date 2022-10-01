@@ -1,0 +1,28 @@
+    1  oc login -u$U -p$P $A
+    2  oc new-project rdc-no-template
+    3  oc new-app --name=detail --as-deployment-config https://gitlab.com/rgdcosta/ocp-apps.git --context-dir=php-detail
+    4* oc new-app --name=detail --as-deployment-config https://gitlab.com/rgdacosta/ocp-apps --context-dir=php-detail
+    5  oc new-app --name=detail --as-deployment-config https://gitlab.com/rgdacosta/ocp-apps.git --context-dir=php-detail
+    6  oc expose svc/detail --hostname rdc-no-template/$W
+    7  echo $W
+    8  oc expose svc/detail --hostname rdc-no-template.$W
+    9  oc get route
+   10  curl rdc-no-template.apps.ap46.prod.nextcle.com
+   11  oc get pods
+   12  oc logs -f detail-1-vcbd9
+   13  curl rdc-no-template.apps.ap46.prod.nextcle.com
+   14  oc get route
+   15  oc logs -f bc/detail
+   16  oc delete route/detail
+   17  oc expose svc/detail
+   18  oc get route
+   19  curl detail-rdc-no-template.apps.ap46a.prod.ole.redhat.com
+   20  oc get pods
+   21  oc rsh pod/detail-1-vcbd9
+   22* ls -ltr 
+   23  oc rsh pod/detail-1-vcbd9 env | grep MY
+   24  oc rsh pod/detail-1-vcbd9 env 
+   25  oc get all
+   26  oc get bc/detail -o yaml > DO288/DO288-exercices/ch06-template-rdc-template.yaml
+   27  vi ~/DO288/DO288-exercices/ch06-template-rdc-template.yaml 
+   28  history > ~/DO288/DO288-exercices/ch06-workedEx-incomplete.txt

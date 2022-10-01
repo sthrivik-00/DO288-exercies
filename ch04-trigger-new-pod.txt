@@ -1,0 +1,46 @@
+    1  podman search bitnami | more
+    2  podman search bitnami | grep nginx
+    3  skopeo inspect docker://docker.io/bitnami/nginx
+    4  skopeo inspect docker://docker.io/bitnami/nginx | more
+    5  podman run docker.io/bitnami/nginx:1.12
+    6  podman run -d docker.io/bitnami/nginx:1.12 -t bitginx
+    7  podman ps
+    8  podman ps -a
+    9  podman images
+   10  skopeo copy container-storage:docker.io/bitnami/nginx docker://quay.io/sthrivik_00/bitnami-nginx
+   11  skopeo copy containers-storage:docker.io/bitnami/nginx docker://quay.io/sthrivik_00/bitnami-nginx
+   12  skopeo copy containers-storage:b4f96d8ebb0f docker:////quay.io/sthrivik_00/bitnami-nginx
+   13  skopeo copy containers-storage:b4f96d8ebb0f docker://quay.io/sthrivik_00/bitnami-nginx
+   14  oc new-app --name=bitginx --image-stream=quay.io/sthrivik_00/bitnami-nginx
+   15  oc import-image quay.io/sthrivik_00/bitnami-nginx --confirm
+   16  oc login -u$U -p$P $A
+   17  oc import-image quay.io/sthrivik_00/bitnami-nginx --confirm
+   18  podman login quay.io
+   19  cat create-secret.sh 
+   20  cat ${XDG_RUNTIME_DIR}/containers/auth.json
+   21  oc create secret generic quayio --from-file .dockerconfigjson=$${XDG_RUNTIME_DIR}/containers/auth.json --type=kubernetes.io/dockerconfigjson
+   22  oc create secret generic quayio --from-file .dockerconfigjson=${XDG_RUNTIME_DIR}/containers/auth.json --type kubernetes.io/dockerconfigjson
+   23  oc secrets link default quayio --for=pull
+   24  oc get is
+   25  oc delete is/bitnami-nginx
+   26  oc import-image quay.io/sthrivik_00/bitnami-nginx --confirm
+   27  oc new-app --name=bitginx --image-stream=quay.io/sthrivi_00/bitnami-nginx
+   28  oc new-app --name=bitginx --image-stream=quay.io/sthrivik_00/bitnami-nginx
+   29  oc get is
+   30  oc describe is/bitnami-nginx | more
+   31  oc delete is/bitnami-nginx
+   32  oc import-image bitginx --from quay.io/sthrivik_00/bitnami-nginx --confirm
+   33  oc get is
+   34  oc new-app --name=bitginx --image-stream=bitginx
+   35  oc get pods
+   36  oc logs -f pods/bitginx-6c4c8fdf8f-ctd2x
+   37  oc get all
+   38  podman run -d docker.io/bitnami/nginx:1.14 -t bitginx
+   39  podman images
+   40  skopeo copy containers-storage:e2c9f2a645f7 docker://quay.io/sthrivik_00/bitnami-nginx
+   41  oc get pods
+   42  oc get is
+   43  oc import-image bitginx
+   44  oc get pods
+   45  oc get all
+   46  history > ~/DO288/DO288-exercices/ch04-trigger-new-pod.txt

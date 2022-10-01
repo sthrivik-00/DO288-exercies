@@ -1,0 +1,64 @@
+    1  cd ~/DO288/DO288/labs/multicontainer-helm/
+    2  ls -ltr
+    3  helm create famouschart
+    4  cd
+    5  curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3
+    6  ls -ltr
+    7  chmod 700 get_helm.sh
+    8  ./get_helm.sh 
+    9  rm get_helm.sh 
+   10  cd Downloads/
+   11  ls -ltr
+   12  tar -svf helm-v3.9.3-linux-386.tar.gz 
+   13  tar -xvf helm-v3.9.3-linux-386.tar.gz 
+   14  ls -ltr
+   15  mv linux-386/helm /usr/bin/helm
+   16  sudo mv linux-386/helm /usr/bin/helm
+   17  which helm
+   18  cd ~/DO288//DO288/labs/multicontainer-helm/
+   19  helm create famouschart
+   20  cd famouschart/
+   21  tree .
+   22  vi values.yaml 
+   23  vi templates/deployment.yaml 
+   24  vi Chart.yaml 
+   25  cat ~/DO288/DO288/labs/multicontainer-helm/dependencies.yaml >> Chart.yaml 
+   26  vi Chart.yaml 
+   27  helm dependancy update
+   28  helm dependency update
+   29  cat ~/DO288/DO288/labs/multicontainer-helm/dependencies.yaml 
+   30  helm dependency --help | more
+   31  helm dependency list
+   32  cat ~/DO288/DO288/labs/multicontainer-helm/dependencies.yaml 
+   33  tree .
+   34  cat ~/DO288/DO288/labs/multicontainer-helm/mariadb.yaml >> values.yaml 
+   35  vi values.yaml 
+   36  vi templates/deployment.yaml 
+   37  cat ~/DO288/DO288/labs/multicontainer-helm/env.yaml >> values.yaml 
+   38  vi values.yaml 
+   39  vi templates/deployment.yaml 
+   40  oc login -u ${RHT_OCP4_DEV_USER} -p ${RHT_OCP4_DEV_PASSWORD} ${RHT_OCP4_MASTER_API}
+   41  oc login -u$U -p$P $A
+   42  oc new-project ${RHT_OCP4_DEV_USER}-multicontainer-helm
+   43  find . -name "*" | xargs grep -l famousapp
+   44  vi values.yaml 
+   45  helm install famousapp .
+   46  tree .
+   47  helm dependency build
+   48  vi Chart.yaml 
+   49  helm install famousapp .
+   50  helm dependency build
+   51  vi Chart.
+   52  ls -ltr
+   53  vi Chart.yaml 
+   54  helm install famousapp .
+   55  oc project
+   56  oc login -u$U -p$P $A
+   57  oc project edkqjw-multicontainer-helm
+   58  oc new-project edkqjw-multicontainer-helm
+   59  helm install famousapp .
+   60  oc get deployments 
+   61  oc get build
+   62  oc get all
+   63  oc logs -f pod/famousapp-famouschart-c79c686bd-gxf5h
+   64  history > ~/DO288/DO288-exercices/ch06-guidedEx01_not_working.txt

@@ -1,0 +1,44 @@
+    1  cd ~/DO288/DO288/labs/multicontainer-
+    2  cd ~/DO288/DO288/labs/multicontainer-review/
+    3  helm create exochart
+    4  ls -ltr
+    5  tree .
+    6  cd exochart/
+    7  vi Chart.yaml 
+    8  vi templates/deployment.yaml 
+    9  vi values.yaml 
+   10  vi Chart.yaml 
+   11  helm dependancy update 
+   12  helm dependency update 
+   13  vi templates/deployment.yaml 
+   14  vi Chart.
+   15  vi Chart.yaml 
+   16  find . -name "*" | xargs grep 8080
+   17  vi values.yaml 
+   18  oc new-project $U-multicontainer-review
+   19  find . -name "*" | xargs grep -l exoplanets
+   20  grep exoplanets values.yaml 
+   21  helm install exoplanets .
+   22  oc get pods
+   23  oc get svc
+   24  oc expose exoplanets-exochart
+   25  oc expose svc/exoplanets-exochart
+   26  oc get route
+   27  cd ../
+   28  mkdir exokustom
+   29  mkdir base
+   30  vi base/deployment.yaml
+   31  cd exokustom/
+   32  helm template exoplanets ../exochart > base/deployment.yaml
+   33  rmdir ../base/
+   34  mkdir base
+   35  helm template exoplanets ../exochart > base/deployment.yaml
+   36  vi base/kustomization.yaml
+   37  mkdir -p overlays/test
+   38  vi overlays/test/replica_limits.yaml
+   39  vi overlays/test/kustomization.yaml
+   40  oc apply -k overlays/test
+   41  oc get deployments
+   42  oc get deployment/exoplanets-exochart
+   43  oc get deployment/exoplanets-exochart -o yaml | more
+   44  history > ~/DO288/DO288-exercices/lab06.txt 

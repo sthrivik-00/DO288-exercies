@@ -1,0 +1,40 @@
+#previous case did not work because in dependancies.yaml the mariadb version was to be updated from 9.0.11 to 11.0.13 
+    1  cd
+    2  ls -ltr
+    3  cd DO288/
+    4  ls -ltr
+    5  cd DO288/labs/multicontainer-helm/
+    6  ls -ltr
+    7  vi famouschart/Chart.yaml 
+    8  rm -rf famouschart/
+    9  oc login -u$U -p$P $A
+   10  oc delete all --all
+   11  helm create famouschart
+   12  cd famouschart/
+   13  tree .
+   14  vi values.yaml 
+   15  vi templates/deployment.yaml 
+   16  cat ../dependencies.yaml >> Chart.yaml 
+   17  vi Chart.yaml 
+   18  helm dependency update
+   19  ls -ltr
+   20  cat ../mariadb.yaml >> values.yaml 
+   21  vi values.yaml 
+   22  vi templates/deployment.yaml 
+   23  cat ../env.yaml >> values.yaml 
+   24  vi values.yaml 
+   25  oc whoami 
+   26  oc new-project $U--multicontainer-helm
+   27  help install famousapp .
+   28  helm install famousapp .
+   29  oc get pods
+   30  oc get deploy
+   31  oc get all
+   32  oc get pods -w
+   33  oc get pods
+   34  oc get svc
+   35  oc expose svc/famousapp-famouschart
+   36  oc get route
+   37  curl famousapp-famouschart-edkqjw--multicontainer-helm.apps.ap46a.prod.ole.redhat.com
+   38  curl famousapp-famouschart-edkqjw--multicontainer-helm.apps.ap46a.prod.ole.redhat.com/random
+   39  history > ~/DO288/DO288-exercices/ch06-guidedEx01_working.txt 

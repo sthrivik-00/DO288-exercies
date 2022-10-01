@@ -1,0 +1,49 @@
+    1  ls -ltr
+    2  vi ch07-manage-appl-deploy.txt 
+    3  echo $WC
+    4  echo $W
+    5  git checkout -b manage-deploy
+    6  git push -u origin manage-deploy
+    7  oc new-project $U-manage-deploy
+    8  oc new-app --as-deployment-config -name=scale php7.3~https://github.com/sthrivik-00/DO288-apps#manage-deploy --context-dir=php-scale 
+    9  oc new-app --as-deployment-config -name=scale php:7.3~https://github.com/sthrivik-00/DO288-apps#manage-deploy --context-dir=php-scale 
+   10  c new-app --as-deployment-config --name scale php:7.3~https://github.com/${RHT_OCP4_GITHUB_USER}/DO288-apps#manage-deploy \
+   11  oc new-app --as-deployment-config --name scale php:7.3~https://github.com/${RHT_OCP4_GITHUB_USER}/DO288-apps#manage-deploy \
+   12  oc new-app --as-deployment-config --name=scale php:7.3~https://github.com/sthrivik-00/DO288-apps#manage-deploy --context-dir=php-scale 
+   13  oc expose service/scale
+   14  oc get route
+   15  curl scale-oycwev-manage-deploy.apps.ap46a.prod.ole.redhat.com
+   16  oc get pods
+   17  oc get route
+   18  curl scale-oycwev-manage-deploy.apps.ap46a.prod.ole.redhat.com
+   19  oc get pods
+   20  oc get dc
+   21  oc describe dc/scale | grep strategy
+   22  oc describe dc/scale
+   23  oc describe dc/scale | grep -i strategy
+   24  oc scale -h
+   25  oc scale -h | less
+   26  oc scale --replicas=2 dc/scale
+   27  oc get pods
+   28  curl scale-oycwev-manage-deploy.apps.ap46a.prod.ole.redhat.com
+   29  cd php-scale/
+   30  ls -l
+   31  vi index.php 
+   32  cd ..
+   33  git status
+   34  git add php-scale/index.php
+   35  git commit -m "change version in php-scale/index.html"
+   36  git push
+   37  oc get build
+   38  oc start-build scale
+   39  oc get pods
+   40  oc logs -f build/scale-2
+   41  oc get pods
+   42  curl scale-oycwev-manage-deploy.apps.ap46a.prod.ole.redhat.com
+   43  oc get dc
+   44  curl scale-oycwev-manage-deploy.apps.ap46a.prod.ole.redhat.com
+   45  oc rollback dc/scale
+   46  oc get dc
+   47  oc get pods
+   48  curl scale-oycwev-manage-deploy.apps.ap46a.prod.ole.redhat.com
+   49  history > ch07-manage-appl-deploy-lab.txt 

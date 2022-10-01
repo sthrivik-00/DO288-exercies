@@ -1,0 +1,81 @@
+    1  cd
+    2  cd DO288/DO288-apps/container-build/
+    3  cat Containerfile 
+    4  podman buid -t do288-apache --format=docker --layers=false .
+    5  podman build -t do288-apache --format=docker --layers=false .
+    6  podman images
+    7  podman tag localhost/do288-apache quay.io/sthrivik_00/do288-apache
+    8  podman login
+    9  podman login quay.io
+   10  podman push quay.io/sthrivik_00/do288-apache
+   11  oc new-app --name=hola --image=quay.io/sthrivik_00/do288-apache
+   12  oc new-project ${RHT_OCP4_DEV_USER}-container-build
+   13  oc new-app --name=hola --image=quay.io/sthrivik_00/do288-apache
+   14  oc new-app --name=hola quay.io/sthrivik_00/do288-apache
+   15  oc new-app --name=hola --image=quay.io/sthrivik_00/do288-apache
+   16  oc get pds
+   17  oc get pods
+   18  oc logs hola-6b8c6878c5-5hlvs
+   19  oc delete all -l app=hola
+   20  cd ~/DO288/DO288/labs/container-build/
+   21  ls -l 
+   22  ls -l httpd-parent/
+   23  cd -
+   24  vi Containerfile 
+   25  git checkout container-build
+   26  git checkout -b container-build
+   27  cd ..
+   28  git checkout -b container-build
+   29  git push -u origin container-build
+   30  cd container-build/
+   31  git status
+   32  git add Containerfile 
+   33  git commit -m "Changed the Containerfile to enable running as a random uid on OpenShift"
+   34  git push
+   35  podman images
+   36  podman rmi -a
+   37  podman rmi -af
+   38  podman build -t do288-apache --format=docker --layers-false .
+   39  podman build -t do288-apache --format=docker --layers=false .
+   40  podman images
+   41  podman build -t quay.io/sthrivik_00/do288-apache --format=docker --layers=false .
+   42  oc get all
+   43  history | grep new-app
+   44  oc new-app --name=hola --image=quay.io/sthrivik_00/do288-apache
+   45  oc get logs
+   46  oc get pods
+   47  oc logs hola-6b8c6878c5-rz224
+   48  cat Containerfile 
+   49  ls -ltr Containerfile 
+   50  ls -ltr
+   51  ls -ltr src/
+   52  oc get pods
+   53  oc rsh hola-6b8c6878c5-rz224
+   54  oc rsh pods/RUN sed -i "s/Listen 80/Listen 8080/g" /etc/httpd/conf/httpd.conf
+   55  RUN sed -i "s/#ServerName www.example.com:80/ServerName 0.0.0.0:8080/g" /etc/httpd/conf/httpd.conf
+   56  oc rsh pods/hola-6b8c6878c5-rz224
+   57  oc get pods
+   58  cat Containerfile 
+   59  oc whoami --show-console
+   60  echo $U
+   61  echo $P
+   62  oc project
+   63  oc delete all --all
+   64  podman rmi -af
+   65  vi Containerfile 
+   66  podman build -t quay.io/sthrivik_00/do288-apache --format=docker --layers=false .
+   67  vi Containerfile 
+   68  podman build -t quay.io/sthrivik_00/do288-apache --format=docker --layers=false .
+   69  podman push quay.io/sthrivik_00/do288-apache
+   70  oc new-app --name=hola --image=quay.io/sthrivik_00/do288-apache
+   71  oc get pods
+   72  oc expose service/hola
+   73  oc get route
+   74  curl hola-oycwev-container-build.apps.ap46a.prod.ole.redhat.com
+   75  oc get route
+   76  oc delelte route/hola
+   77  oc delete route/hola
+   78  oc expose --port='8080' svc/hola
+   79  oc get route
+   80  curl hola-oycwev-container-build.apps.ap46a.prod.ole.redhat.com
+   81  history > ~/DO288/DO288-exercices/ch02-guided-ex01-deploy-containerized-appl.txt

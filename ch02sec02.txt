@@ -1,0 +1,93 @@
+    1  podman images
+    2  podman login quay.io
+    3  cat /run/user/1000/containers/auth.json 
+    4  echo c3Rocml2aWtfMDA6TmlrMTIwNkdI | base64 -d
+    5  podman run -d -p 8080:80 quay.io/rdacosta/my_httpd:latest
+    6  curl http://localhost:8080
+    7  sudo curl http://localhost:8080
+    8  oc new-project rdc-bttpd-1
+    9  oc login -u$U -p$P $A
+   10  oc new-project rdc-httpd-1
+   11  podman images
+   12  oc new-app --name=httpd-1 quay.io/rdacosta/my_httpd
+   13  oc get pods
+   14  watch oc get pods
+   15  oc expose service/httpd-1
+   16  oc get route
+   17  curl httpd-1-rdc-httpd-1.apps.ap46a.prod.ole.redhat.com
+   18  oc get pods
+   19  oc logs pods/httpd-1-f78bcdfc7-wcvv4
+   20  oc get all
+   21  oc logs httpd-1-f78bcdfc7-wcvv4
+   22  oc get pods
+   23  oc debug deployment.apps/httpd-1
+   24  skopeo inspect docker://quay.io/rdacosta/my_httpd:latest | grep -i -A6 entrypoint 
+   25  podman inspect docker://quay.io/rdacosta/my_httpd:latest | grep -i -A6 entrypoint 
+   26  ls -ltr
+   27  cd DO288
+   28  cd DO288-apps/
+   29  ls -ltr
+   30  ls -ltr container-build
+   31  vi container-build/Containerfile 
+   32  cd ../DO288/solutions/container-build/
+   33  ls -ltr
+   34  vi Containerfile 
+   35  cd ../../solutions/
+   36  find . -name Containerfile
+   37  vi container-build/Containerfile 
+   38  cd ../labs/
+   39  find . -name Containerfile
+   40  vi container-build/httpd-parent/Containerfile 
+   41  cd ~/DO288/DO288-exercices/
+   42  mkdir class02
+   43  rmdif class02/
+   44  rmdir class02/c
+   45  rmdir class02/
+   46  mkdir ch02sec02
+   47  cd ch02sec02/
+   48  vi Containerfile
+   49  cat Containerfile 
+   50  cd ..
+   51  mv ch02sec02/ ~/DO288/DO288/solutions/
+   52  ls -ltr
+   53  cd ~/DO288/DO288/solutions/
+   54  ls -ltr
+   55  git status
+   56  git add ch02sec02/
+   57  git commit -m " Worked in video of ch02 section 02"
+   58  git push
+   59  git branch
+   60  git checkout -b rhls
+   61  git push -u origin rhls 
+   62  git push 
+   63  git branch
+   64  ls -ltr
+   65  git delete ch02sec02
+   66  git rm ch02sec02
+   67  cp ch02sec02/Containerfile ~/
+   68  git rm -r ch02sec02
+   69  git status
+   70  git commit -m "removed ch02sec02. Will push from another folder"
+   71  git push
+   72  cd ..
+   73  ls -ltr
+   74  mkdir ch02sec02
+   75  mv ~/Containerfile ch02sec02/
+   76  git status
+   77  git add ch02sec02/
+   78  git commit -m "Adding ch02sec02 from new location"
+   79  git push
+   80  oc new-app --name=my_httpd-2 https://github.com/sthrivik-00/DO288#rhls --context-dir=ch02sec02
+   81  ls -ltr
+   82  podman build -t httpd-2 ch02sec02/
+   83  vi ch02sec02/Containerfile 
+   84  podman build -t httpd-2 ch02sec02/
+   85  vi ch02sec02/Containerfile 
+   86  podman build -t httpd-2 ch02sec02/
+   87  git status
+   88  git add ch02sec02/Containerfile
+   89  git commit -m "Fixed ch02sec02/Containerfile"
+   90  git push
+   91  oc new-app --name=my_httpd-2 https://github.com/sthrivik-00/DO288#rhls --context-dir=ch02sec02
+   92  echo "NOT WORKING"
+   93  history > ~/DO288/DO288-exercices/ch02sec02.txt

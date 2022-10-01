@@ -1,0 +1,39 @@
+    1  ls -ltr
+    2  cd DO288/ocp-apps/
+    3  ls -ltr
+    4  cd ocp-apps/
+    5  ls -ltr
+    6  cd php-hello-dockerfile/
+    7  ls -ltr
+    8  cat index.php 
+    9  podman rmi -a
+   10  podman build -t quay.io/sthrivik_00/php-trigger-build .
+   11  skopeo copy containers-storage:quay.io/sthrivik_00/php-trigger-builds --dest-creds sthrivik_00:Nik1206GH docker-io//quay.io/sthrivik_00/php-trigger-builds
+   12  skopeo copy containers-storage:quay.io/sthrivik_00/php-trigger-builds --dest-creds sthrivik_00:Nik1206GH docker//quay.io/sthrivik_00/php-trigger-builds
+   13  skopeo copy containers-storage:quay.io/sthrivik_00/php-trigger-builds --dest-creds sthrivik_00:Nik1206GH docker://quay.io/sthrivik_00/php-trigger-builds
+   14  podman images
+   15  skopeo copy containers-storage:quay.io/sthrivik_00/php-trigger-build --dest-creds sthrivik_00:Nik1206GH docker://quay.io/sthrivik_00/php-trigger-build --format=v2s1
+   16  oc new-project trigger-builds
+   17  oc new-project $U-triger-builds
+   18  cat /run/user/1000/containers/auth.json 
+   19  oc create secret generic quayio --from-file .dockerconfigjson=/run/user/1000/containers/auth.json --type kubernetes.io/dockerconfigjson
+   20  oc secret link default quayio --for=pull
+   21  oc import-image php-trigger-build --from=quay.io/sthrivik_00/php-trigger-build --confirm
+   22  oc get istag
+   23  oc get is/php-trigger-build
+   24  oc describe is/php-trigger-build | more
+   25  oc new-app --name=trigger --image-stream=php-trigger-build
+   26  oc get pods
+   27  oc expose svc/trigger
+   28  oc get route
+   29  curl trigger-mbtacz-triger-builds.apps.na46a.prod.ole.redhat.com
+   30  vi index.php 
+   31  history | grep build
+   32  podman build -t quay.io/sthrivik_00/php-trigger-build2 .
+   33  skopeo copy containers-storage:quay.io/sthrivik_00/php-trigger-build2 --dest-creds sthrivik_00:Nik1206GH docker://quay.io/sthrivik_00/php-trigger-build --format=v2s1
+   34  oc get pods
+   35  oc import-image php-trigger-build
+   36  oc get pods
+   37  watch oc get pods
+   38  curl trigger-mbtacz-triger-builds.apps.na46a.prod.ole.redhat.com
+   39  history > ~/DO288/DO288-exercices/ch04-guidEx02.txt

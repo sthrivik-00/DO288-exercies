@@ -1,0 +1,60 @@
+    1  cd
+    2  cd DO288/DO288-apps/
+    3  git checkout -b app-config
+    4  git push -u origin app-config
+    5  cd app-config/
+    6  ls -l
+    7  cat app.js 
+    8  oc new-project ${RHT_OCP4_DEV_USER}-app-config
+    9  oc new-app --name=myapp https://github.co/sthrivik-00/DO288-apps#app-config --context-dir=app-config
+   10  cd ~/DO288/DO288/labs/app-config/
+   11  ls -l
+   12  cat oc-new-app.sh 
+   13  oc new-app  --as-deployment-config --name myapp    --build-env npm_config_registry=http://${RHT_OCP4_NEXUS_SERVER}/repository/nodejs    "nodejs:10~https://github.com/${RHT_OCP4_GITHUB_USER}/DO288-apps#app-config"     --context-dir app-config
+   14  oc get pods
+   15  oc expose service/myapp
+   16  oc get route
+   17  curl myapp-oycwev-app-config.apps.ap46a.prod.ole.redhat.com
+   18  curl http://myapp-${RHT_OCP4_DEV_USER}-app-config.${RHT_OCP4_WILDCARD_DOMAIN}
+   19  oc get pods
+   20  curl myapp-oycwev-app-config.apps.ap46a.prod.ole.redhat.com
+   21  curl \
+   22  oc create configmap myappconf \
+   23  pwd
+   24  cd -
+   25  ls -l
+   26  cat myapp.sec 
+   27  oc create secret -h | more
+   28  oc create secret generic -h | more
+   29  ls -l
+   30  oc create secret generic myappfilesec --from-file=myapp.sec
+   31  oc describe secret/myappfilesec
+   32  pwd
+   33  oc delete secret/myappfilesec
+   34  oc create secret generic myappfilesec --from-file=/home/smitha/DO288/DO288-apps/app-config/myapp.sec
+   35  oc describe secret/myappfilesec
+   36  oc get secret/myappfilesec -o json
+   37  echo "dXNlcm5hbWU9dXNlcjEKcGFzc3dvcmQ9cGFzczEKc2FsdD14eXoxMjMK" | base64
+   38  echo "dXNlcm5hbWU9dXNlcjEKcGFzc3dvcmQ9cGFzczEKc2FsdD14eXoxMjMK" | base64 -d
+   39  oc get deployment 
+   40  oc get all
+   41  oc get deploy
+   42  oc set env deployment/myapp --from configmap/myappconf
+   43  oc set env dc/myapp --from configmap/myappconf
+   44  cd -
+   45  ls -l
+   46  cat inject-secret-file.sh 
+   47  ./inject-secret-file.sh 
+   48  oc set volume dc/myapp --add     -t secret -m /opt/app-root/secure     --name=myappsec-vol --secret-name=myappfilesec
+   49  oc get pods
+   50  curl \
+   51  oc get route
+   52  curl myapp-oycwev-app-config.apps.ap46a.prod.ole.redhat.com
+   53  oc get cm
+   54  oc edit cm/myappconf
+   55  oc get pods
+   56  curl myapp-oycwev-app-config.apps.ap46a.prod.ole.redhat.com
+   57  oc delete pod/myapp-3-4d796
+   58  oc get pods
+   59  curl myapp-oycwev-app-config.apps.ap46a.prod.ole.redhat.com
+   60  history > ~/DO288/DO288-exercices/ch02-guided-ex02-app-config.txt 

@@ -1,0 +1,66 @@
+    1  git checkout -b design-container
+    2  git checkout design-container
+    3  oc login -u$U -p$P $A
+    4  oc new-project ${RHT_OCP4_DEV_USER}-design-container
+    5  oc project
+    6  oc get all
+    7  podman build --layers=false -t do288-hello-java ./hello-java
+    8  podman build --layers=false \
+    9  podman tag do288-hello-java quay.io/${RHT_OCP4_QUAY_USER}/do288-hello-java
+   10  podman login quay.io -u ${RHT_OCP4_QUAY_USER}
+   11  podman push quay.io/${RHT_OCP4_QUAY_USER}/do288-hello-java
+   12  oc new-app --name elvis quay.io/${RHT_OCP4_QUAY_USER}/do288-hello-java
+   13  podman build --layers=false --format=docker -t do288-hello-java ./hello-java
+   14  podman tag do288-hello-java quay.io/${RHT_OCP4_QUAY_USER}/do288-hello-java
+   15  podman push quay.io/${RHT_OCP4_QUAY_USER}/do288-hello-java
+   16  oc new-app --name elvis quay.io/${RHT_OCP4_QUAY_USER}/do288-hello-java
+   17  oc get pods
+   18  vi hello-java/Containerfile 
+   19  diff ~/DO288/DO288/solutions/design-container/Containerfile hello-java/Containerfile 
+   20  vi hello-java/Containerfile 
+   21  vi ~/DO288/DO288/solutions/design-container/Containerfile
+   22  vi hello-java/Containerfile 
+   23  git branch
+   24  git status
+   25  git add hello-java/Containerfile 
+   26  git commit -m "Fixed Containerfile to run with random user id on OpenShift"
+   27  git push
+   28  cd hello-java/
+   29  podman images
+   30  podman rmi -a -f
+   31  history | grep build
+   32  podman build --layers=false --format=docker -t do288-hello-java .
+   33  podman push quay.io/${RHT_OCP4_QUAY_USER}/do288-hello-java
+   34  podman images
+   35  vi Containerfile 
+   36  podman build --layers=false --format=docker -t do288-hello-java .
+   37  podman push quay.io/${RHT_OCP4_QUAY_USER}/do288-hello-java
+   38  podman images
+   39  history | grep tag
+   40  podman tag do288-hello-java quay.io/${RHT_OCP4_QUAY_USER}/do288-hello-java
+   41  podman push quay.io/${RHT_OCP4_QUAY_USER}/do288-hello-java
+   42  oc delete all --all
+   43  history | grep new-app
+   44  oc new-app --name elvis quay.io/${RHT_OCP4_QUAY_USER}/do288-hello-java
+   45  oc get pods
+   46  oc logs pods/elvis-57d444bcdc-n2dmg
+   47  oc expose svc/elsvis
+   48  oc expose svc/elvis
+   49  oc get route
+   50  curl elvis-oycwev-design-container.apps.ap46a.prod.ole.redhat.com
+   51  curl elvis-oycwev-design-container.apps.ap46a.prod.ole.redhat.com/api/hello
+   52  oc create cm -h
+   53  oc create cm -h | more
+   54  oc create configmap appconfig --from-literal=APP_MSG="Elvis lives"
+   55  oc set env -h
+   56  oc set env -h | more
+   57  oc get dc
+   58  oc get deployment
+   59  oc set env --from=cm/appconfig deployment/elvis
+   60  oc get deployment
+   61  oc status
+   62  oc get pods
+   63  oc rsh elvis-78f6cb5d87-4fcw4 env | grep APP-MSG
+   64  oc rsh elvis-78f6cb5d87-4fcw4 env | grep APP_MSG
+   65  curl elvis-oycwev-design-container.apps.ap46a.prod.ole.redhat.com/api/hello
+   66  history > ~/DO288/DO288-exercices/ch02-lab.txt

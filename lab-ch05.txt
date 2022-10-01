@@ -1,0 +1,80 @@
+    1  cd DO288/DO288/labs/custom-s2i/
+    2  ls -l
+    3  vi Dockerfile 
+    4  ls -ltr
+    5  ls -ltr s2i/
+    6  ls -ltr s2i/bin/
+    7  vi Con
+    8  vi Dockerfile 
+    9  podman build -t s2i-do288-go .
+   10  s2i build --help | more
+   11  podman images | grep s2i
+   12  s2i build --help | more
+   13  vi ~/DO288/DO288-exercices/ch05-guidedEx02.txt 
+   14  cd 
+   15  mkdir s2i-go-app
+   16  podman images | grep s2i
+   17  s2i build ~/DO288/DO288/labs/custom-s2i/test/test-app/ s2i-do288-go s2i-go-app --as-dockerfile ~/s2i-go-app/Containerfile
+   18  cd s2i-go-app
+   19  ls -ltr
+   20  vi ~/DO288/DO288-exercices/ch05-guidedEx02.txt 
+   21  skopeo copy containers-storage:localhost/s2i-do288-go docker://quay.io/sthrivik_00/s2i-do288-go --format=v2s1
+   22  oc projct
+   23  oc project
+   24  oc new-project ${RHT_OCP4_DEV_USER}-custom-s2i
+   25  oc import-image s2i-do288-go --from=quay.io/sthrivik_00/s2i-do288-go --confirm
+   26  oc delete is/s2i-do288-go
+   27  cd ~/DO288/DO288/labs/custom-s2i/
+   28  cat create-secret.sh 
+   29  oc create secret generic quayio --from-file .dockerconfigjson=${XDG_RUNTIME_DIR}/containers/auth.json --type=kubernetes.io/dockerconfigjson
+   30  oc link secret builder quayio
+   31  oc secret link builder quayio
+   32  oc import-image s2i-do288-go --from=quay.io/sthrivik_00/s2i-do288-go --confirm
+   33  git checkout -b custom-s2i
+   34  git push origin custom-s2i
+   35  git push -u origin custom-s2i
+   36  pwd
+   37  cd ~/DO288/DO288-apps/go-hello/
+   38  ls -ltr
+   39  oc new-app --name=greet https://github.com/sthrivik-00/DO288-apps#custom-s2i --context-dir=go-hello --image-stream=s2i-do288-go
+   40  oc new-app --name=greet s2i-do288-go~https://github.com/sthrivik-00/DO288-apps#custom-s2i --context-dir=go-hello 
+   41  oc logs -f bc/greet
+   42  oc expose svc/greet
+   43  oc get route
+   44  curl greet-edkqjw-custom-s2i.apps.ap46a.prod.ole.redhat.com
+   45  vi app.go 
+   46  cd
+   47  ls -ltr
+   48  cd DO288/DO288/labs/custom-s2i/s2i/bin/
+   49  ls -ltr
+   50  grep lang *
+   51  cd ../../
+   52  vi Dockerfile 
+   53  ls -altr
+   54  cd ~/DO288/DO288-apps/go-hello/
+   55  ls -altr
+   56  cd .s2i/
+   57  ls -ltr
+   58  cd bin/
+   59  ls -ltr
+   60  vi run 
+   61  git status
+   62  cd ..
+   63  git status
+   64  git checkout -b custom-s2i
+   65  git status
+   66  git push -u origin custom-s2i
+   67  cat .s2i/bin/run 
+   68  curl greet-edkqjw-custom-s2i.apps.ap46a.prod.ole.redhat.com
+   69  vi .s2i/bin/run 
+   70  git status
+   71  git add .s2i/bin/run
+   72  git commit -m "Change greeting language"
+   73  git push
+   74  git branch
+   75  oc get biold
+   76  oc get build
+   77  oc start-build greet
+   78  oc logs -f bc/greet
+   79  curl greet-edkqjw-custom-s2i.apps.ap46a.prod.ole.redhat.com
+   80  history > ~/DO288/DO288-exercices/lab-ch05.txt

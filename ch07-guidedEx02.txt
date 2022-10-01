@@ -1,0 +1,30 @@
+    1  oc project ${RHT_OCP4_DEV_USER}-strategy
+    2  oc new-app --name=mysql --as-deployment-config -i=registry.redhat.io/rhel8/mysql-80 -e MYSQL_USER=test -e MYSQL_PASSWORD=redhat -e MYSQL_DATABASE=testdb -e MYSQL_AIO=0
+    3  oc new-app --help | grep -A4 -B4 -i docker
+    4  oc new-app --name=mysql --as-deployment-config --docker-image registry.redhat.io/rhel8/mysql-80 -e MYSQL_USER=test -e MYSQL_PASSWORD=redhat -e MYSQL_DATABASE=testdb -e MYSQL_AIO=0
+    5  oc new-app --help | grep -i docker-image
+    6  oc new-app --help | more
+    7  oc delete all --all
+    8  oc new-app --help | more
+    9  oc new-app --name=mysql --as-deployment-config --image registry.redhat.io/rhel8/mysql-80 -e MYSQL_USER=test -e MYSQL_PASSWORD=redhat -e MYSQL_DATABASE=testdb -e MYSQL_AIO=0
+   10  oc get bc
+   11  oc get build
+   12  oc get all
+   13  oc describe dc/mysql | grep -i strategy
+   14  oc set triggers dc/mysql --from-config --remove
+   15  oc edit dc/mysql
+   16  cd ~/DO288/DO288/labs/strategy/
+   17  ls -ltr
+   18  ./post-hook.sh 
+   19  oc describe dc/mysql | grep -iA 3 'strategy:'
+   20  oc rollout latest dc/mysql
+   21  watch -n 2 oc get pods
+   22  oc get pods
+   23  oc logs -f pod/mysql-2-hook-post
+   24  oc set env dc/mysql HOOK_RETRIES=5
+   25  oc rollout latest dc/mysql
+   26  watch -n 2 oc get pods
+   27  oc logs -f mysql-3-hook-post
+   28  oc get pods
+   29  oc rsh mysql-3-zrnnf
+   30  history > ~/DO288/DO288-exercices/ch07-guidedEx02.txt 

@@ -1,0 +1,35 @@
+    1  cd
+    2  cd ./DO288/labs/expose-image/php-info/blobs
+    3  cd DO288/DO288/labs/expose-image/php-info
+    4  ls -ltr
+    5  pwd
+    6  skopeo copy oci://home/smitha/DO288/DO288/labs/expose-image/php-info docker://quay.io/sthrivi_00/trigger-build
+    7  podman login quay.io
+    8  skopeo copy oci://home/smitha/DO288/DO288/labs/expose-image/php-info docker://quay.io/sthrivi_00/trigger-build
+    9  skopeo copy oci://home/smitha/DO288/DO288/labs/expose-image/php-info docker://quay.io/sthrivik_00/trigger-build
+   10  oc import image --from=quay.io/sthrivik_00/trigger-build
+   11  oc import-image --from=quay.io/sthrivik_00/trigger-build
+   12  oc import-image trigger-build --from=quay.io/sthrivik_00/trigger-build:latest --confirm
+   13  ls -ltr
+   14  cd ..
+   15  ls -ltr
+   16  cat create-secret.sh 
+   17  oc create secret generic quayio --from-file .dockerconfigjson=${XDG_RUNTIME_DIR}/containers/auth.json --type kubernetes.io/dockerconfigjson
+   18  oc import-image trigger-build --from=quay.io/sthrivik_00/trigger-build:latest --confirm
+   19  oc get is
+   20  oc delete is/trigger.build
+   21  oc delete is/trigger-build
+   22  oc import-image trigger-build --from=quay.io/sthrivik_00/trigger-build:latest --confirm
+   23  oc delete is/trigger-build
+   24  oc secret link --help | more
+   25  oc secret link builder quayio --for=pull
+   26  oc import-image trigger-build --from=quay.io/sthrivik_00/trigger-build:latest --confirm
+   27  oc delete is/trigger-build
+   28  oc secrets link builder quayio --for=pull
+   29  oc import-image trigger-build --from=quay.io/sthrivik_00/trigger-build:latest --confirm
+   30  oc delete is/trigger-build
+   31  oc secrets ink default quayio --for=pull
+   32  oc secrets link default quayio --for=pull
+   33  oc import-image trigger-build --from=quay.io/sthrivik_00/trigger-build:latest --confirm
+   34  oc delete is/trigger-build
+   35  history > ~/DO288/DO288-exercices/ch04-trigger-build-not-working.txt

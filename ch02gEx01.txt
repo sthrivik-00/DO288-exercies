@@ -1,0 +1,522 @@
+    1  ls -ltr
+    2  mkdir -p DO288/DO288-labs
+    3  cd DO288/DO288-labs
+    4  git init
+    5  cd
+    6  cd .ssh
+    7  mkdir .ssh
+    8  cd .ssh
+    9  git config --global user.email "sthrivik@in.ibm.com"
+   10  ssh-keygen -t rsa -C "sthrivik@in.ibm.com"
+   11  ls -ltr
+   12  cat id_rsa.pub 
+   13  ssh -T git@github.com
+   14  cd ~/DO288/DO288-labs/
+   15  cd ..
+   16  mv DO288-labs/ DO288-apps/
+   17  rm DO288-apps/
+   18  rmdir DO288-apps/
+   19  cd DO288-apps/
+   20  ls -ltr
+   21  ls -altr
+   22  cd ..
+   23  rm -rf DO288-apps/
+   24  git remote add git@github.com:DO288-apps/DO288-apps.git
+   25  git init DO288-apps
+   26  git remote add git@github.com:DO288-apps/.git
+   27  git remote add git@github.com:DO288-apps/DO288-apps.git
+   28  ls -ltr
+   29  cd DO288-apps/
+   30  git remote -v
+   31  git push -u origin master
+   32  git remote add origin git@github.com:sthrivik-00/DO288-apps.git
+   33  git branch -M main
+   34  git push -u origin main
+   35  cd ..
+   36  git remote add origin git@github.com:sthrivik-00/DO288-apps.git
+   37  cd DO288-apps/
+   38  git remote add origin git@github.com:sthrivik-00/DO288-apps.git
+   39  git push -u origin main
+   40  git pull -u origin main
+   41  git pull origin main
+   42  ls -ltr
+   43  cd ..
+   44  git remote add origin git@github.com:sthrivik-00/DO288.git
+   45  mkdir DO288
+   46  cd DO288
+   47  git remote add origin git@github.com:sthrivik-00/DO288.git
+   48  history | grep init
+   49  cd ..
+   50  rmdir DO288
+   51  git init DO288
+   52  git remote add origin git@github.com:sthrivik-00/DO288.git
+   53  cd DO288
+   54  git remote add origin git@github.com:sthrivik-00/DO288.git
+   55  git branch -M main
+   56  git pull origin main
+   57  ls -ltr
+   58  ls -ltr labs/
+   59  cd ..
+   60  cd
+   61  vi .bashrc 
+   62  exit
+   63  oc login -u$U -p$P $A
+   64  cd ~/Downloads/
+   65  ls -ltr
+   66  rm do288-4.6-student-guide.pdf*
+   67  tar -xvf oc-4.10.21-linux.tar.gz 
+   68  echo $PATH
+   69  ls -ltr
+   70  cp oc /usr/local/bin/
+   71  sudo cp oc /usr/local/bin/
+   72  sudo cp kubectl /usr/local/bin/
+   73  which oc
+   74  cd
+   75  oc login -u$U -p$P $A
+   76  oc get all
+   77  cd ~/Downloads/
+   78  df -k
+   79  cd ~/DO288/
+   80  df -k .
+   81  pwd
+   82  df -k /hom
+   83  df -k /home
+   84  oc new-project ch07-manage-appln
+   85  oc new-app --name=hello1 --as-deployment-config https://gitlab.com/rgdacosta/ocp-apps.git#rhls --context-dir=php-helloworld
+   86  oc new-app --name=hello1 --as-deployment-config https://gitlab.com/rgdacosta/ocp-apps#rhls --context-dir=php-helloworld
+   87  oc new-app --name=hello1 --as-deployment-config https://gitlab.com/rgdacosta/ocp-apps --context-dir=php-helloworld
+   88  oc get pods
+   89  oc expose service/hello1
+   90  oc get route
+   91  curl hello1-ch07-manage-appln.apps.ap46a.prod.ole.redhat.com
+   92  oc get pods
+   93  oc rsh
+   94  oc rsh hello1-1-build
+   95  oc get pods
+   96  curl hello1-ch07-manage-appln.apps.ap46a.prod.ole.redhat.com
+   97  oc get route
+   98  oc delete route/hello1
+   99  oc expose service/hello1
+  100  oc delete route/hello1
+  101  oc expose service/hello1 --hostname rdc-hello1
+  102  oc get route
+  103  curl rdc-hello
+  104  oc delete route/rdc-hello1
+  105  oc get route
+  106  oc delete route/hello1
+  107  oc expose service/hello1 
+  108  oc get route
+  109  curl route/hello1
+  110  curl hello1-ch07-manage-appln.apps.ap46a.prod.ole.redhat.com
+  111  pwd
+  112  history | grep "git init"
+  113  git init ocp-apps
+  114  ssh -T git@gitlab.com
+  115  cd ocp-apps/
+  116  git remote add origin git@gitlab.com:sthrivik-00/oc-apps.git
+  117  git branch -M master
+  118  git pull origin master
+  119  git push -u origin main
+  120  ls -ltr
+  121  ls -altr
+  122  git remote add origin git@gitlab.com:rgdacosta/oc-apps.git
+  123  git remote add  git@gitlab.com:rgdacosta/oc-apps.git
+  124  git remote add origin2 git@gitlab.com:rgdacosta/oc-apps.git
+  125  git pull origin2 master
+  126  git clone git@gitlab.com:sthrivik-00/ocp-apps.git
+  127  ls -ltr
+  128  cd ocp-apps/
+  129  ls -ltr
+  130  git status
+  131  cd php-helloworld/
+  132  ls -ltr
+  133  cat index.php 
+  134  vi index.php 
+  135  oc get route
+  136  curl hello1-ch07-manage-appln.apps.ap46a.prod.ole.redhat.com
+  137  vi index.php 
+  138  git status
+  139  history | grep branch
+  140  git branch -M rhls
+  141  git status
+  142  git add index.pho
+  143  git add index.php 
+  144  git status
+  145  git commit index.php 
+  146  git push
+  147  git status
+  148  git push origin rhls
+  149  curl hello1-ch07-manage-appln.apps.ap46a.prod.ole.redhat.com
+  150  oc get pods
+  151  history > commands.txt
+  152  vi commands.txt 
+  153  oc get is
+  154  oc describe is/hello1
+  155  oc get bc
+  156  oc start-build hello1
+  157  oc get builds
+  158  oc get pods
+  159  curl hello1-ch07-manage-appln.apps.ap46a.prod.ole.redhat.com
+  160  oc rollout history dc/hello1
+  161  oc rollout history dc/hello1 --revision=1
+  162  oc rollout history dc/hello1 --revision=2
+  163  oc describe is/hello1
+  164  oc rollback dc/hello1
+  165  oc get pods
+  166  oc rollback dc/hello1 --to-version=2
+  167  oc get dc
+  168  oc get route
+  169  curl hello1-ch07-manage-appln.apps.ap46a.prod.ole.redhat.com
+  170  history > commands.txt 
+  171  exit
+  172  oc new-app --name=hello https://gitlab.com/sthrivik-00/ocp-apps.git --context-dir=php-helloworld
+  173  oc new-app --name=hello https://gitlab.com/sthrivik-00/ocp-apps.git#rhls --context-dir=php-helloworld
+  174  oc new-app --name=hello https://gitlab.com/sthrivik-00/ocp-apps#rhls --context-dir=php-helloworld
+  175  exit
+  176  oc login -u$U -p$P $A
+  177  cd DO288/DO288-apps/
+  178  git checkout -b app-deploy
+  179  git push -u origin app-deploy
+  180  cd quip/src/main/java/com/redhat/training/example/
+  181  ls -ltr
+  182  vi Quip.java 
+  183  oc new-project $U-app-deploy
+  184  oc delete project $U-app-deploy
+  185  cd
+  186  vi .bashrc
+  187  exit
+  188  cd DO288/DO288-apps/quip/src/main/java/com/redhat/training/example/
+  189  git checkout -b app-deploy
+  190  oc new-project $U-app-deploy
+  191  oc new-app --name=quip --build-env MAVEN_MIRROR_URL=http://${RHT_OCP4_NEXUS_SERVER}/
+  192  repository/java
+  193  oc new-app --name=quip --as-deployment-config --build-env MAVEN_MIRROR_URL=http://${RHT_OCP4_NEXUS_SERVER}/repository/java -i redhat-openjdk18-openshift:1.5 https://github.com/${RHT_OCP4_GITHUB_USER}/DO288-apps#app-deploy --context-dir=quip
+  194  oc get build
+  195  oc get bc
+  196  oc logs bc/quip
+  197  oc logs -f bc/quip
+  198  oc get pods
+  199  oc logs quip-1-txqzw
+  200  oc describe svc/quip | grep Endpoint
+  201  oc describe svc/quip
+  202  oc expose svc/quip
+  203  oc get route
+  204  oc get route --no-headers
+  205  oc get route --no-headers | cut -d " " -f2
+  206  oc get route --no-headers | cut -d "" -f2
+  207  oc get route --no-headers | cut -d" " -f3
+  208  oc get route --no-headers | cut -d" " -f4
+  209  ROUTE=${oc get route --no-headers | cut -d" " -f4}
+  210  ROUTE=`oc get route --no-headers | cut -d" " -f4`
+  211  curl $ROUTE
+  212  oc get dc
+  213  oc set probe dc/quip --liveness --get-url=https://:8080/ready --initial-delay-seconds=30 --timeout-seconds=2
+  214  oc set probe dc/quip --readiness --get-url=https://:8080/ready --initial-delay-seconds=30 --timeout-seconds=2
+  215  oc describe dc/quip | grep https
+  216  oc get pods
+  217  oc get pods | grep -n build
+  218  oc get pods | grep -v build
+  219  oc get pods | grep -v build | grep -v deploy
+  220  oc describe quip-2-7fshm | grep http-get
+  221  oc describe pods/quip-2-7fshm | grep http-get
+  222  oc get pods | grep -v build | grep -v deploy
+  223  oc descibe pods/quip-3-hp67s | grep http-get
+  224  oc describe pods/quip-3-hp67s | grep http-get
+  225  oc log pods/quip-3-hp67s
+  226  oc logs pods/quip-3-hp67s
+  227  curl $ROUTE
+  228  cd ~/DO288/DO288/labs/
+  229  ls -ltr
+  230  ls -l
+  231  cd -
+  232  pwd
+  233  ls -ltr
+  234  sed -i 's/Veni, vidi, vici/I came, I saw, I conquered/g' Quip.java 
+  235  vi Quip.java 
+  236  git commit -a -m "Changed quip lang to english"
+  237  git push
+  238  oc get pods
+  239  oc  start-build quip
+  240  oc get pods
+  241  oc get pods | grep -v build | grep -v deploy
+  242  oc get pods
+  243  curl $ROUTE
+  244  oc get pods | grep -v build | grep -v deploy
+  245  oc get bc
+  246  oc start-build bc
+  247  oc start-build quip
+  248  oc start-build bc
+  249  oc get bc
+  250  oc get pods
+  251  oc get pods | grep build
+  252  oc get pods | grep -v build | grep -v deploy
+  253  oc get pods | grep build
+  254  oc get pods | grep -v build | grep -v deploy
+  255  curl $ROUTE
+  256  oc get pods | grep -v build | grep -v deploy
+  257  exit
+  258  exit
+  259  oc login -u$U -p$P $A
+  260  exit
+  261  cd
+  262  cd ~/DO288/DO288-apps/
+  263  git checkout -b design-container
+  264  git push -u origin design-container
+  265  oc new-project $U-design-container
+  266  oc new-app --name=hello-java https://github.com/sthrivik-00/DO288-apps#design-container --context-dir=hello-java 
+  267  cd hello-java/
+  268  ls -ltr
+  269  cat run-app.sh 
+  270  cat app-src/
+  271  ls -l app-src/src/
+  272  podman build --fomat=docker --layers=false -t quay.io/sthrivik_00/do288-hello-java
+  273  podman build --format=docker --layers=false -t quay.io/sthrivik_00/do288-hello-java
+  274  podman build --format=docker --layers=false -t quay.io/sthrivik_00/do288-hello-java .
+  275  podman images
+  276  podman push quay.io/sthrivik_00/do288-hello-java
+  277  oc new-app --name=hello-java --image=quay.io/sthrivik_00/do288-hello-java
+  278  oc get pods
+  279  vi Containerfile 
+  280  oc get pods
+  281  vi Containerfile 
+  282  git status
+  283  git add Containerfile 
+  284  git commit "Changed Container file for CH02 Lab"
+  285  git commit -m "Changed Container file for CH02 Lab"
+  286  git push
+  287  git push --set-upstream origin design-container
+  288  cd ..
+  289  git status
+  290  cd -
+  291  git pull
+  292  git branch --set-upstream-to=origin design-container
+  293  cd ..
+  294  git branch --set-upstream-to=origin design-container
+  295  git checkout branch design-container
+  296  git checkout design-container
+  297  git push -u origin design-container
+  298  git pull
+  299  git pull origin design-container
+  300  cd hello-
+  301  cd hello-java/
+  302  vi Containerfile 
+  303  git status
+  304  git add Containerfile 
+  305  history | grep commit
+  306  git commit -m "Changed Container file for CH02 Lab"
+  307  git push
+  308  git push --set-upstream origin design-container
+  309  oc get deployment
+  310  oc delete all --selector app=hello-java
+  311  oc get all
+  312  podman images
+  313  podman rmi quay.io/sthrivik_00/do288-hello-java
+  314  history | grep build
+  315  podman build --format=docker --layers=false -t quay.io/sthrivik_00/do288-hello-java .
+  316  vi Containerfile 
+  317  history | grep git
+  318  git commit -m "Changed Container file for CH02 Lab to remove === that came while setting branch right"
+  319  git add Containerfile 
+  320  git commit -m "Changed Container file for CH02 Lab to remove === that came while setting branch right"
+  321  git push
+  322  podman build --format=docker --layers=false -t quay.io/sthrivik_00/do288-hello-java .
+  323  history | grep new-app
+  324  podman images
+  325  podman push quay.io/sthrivik_00/do288-hello-java
+  326  oc new-app --name=hello-java --image=quay.io/sthrivik_00/do288-hello-java
+  327  oc get pods
+  328  history > ~/DO288/DO288-exercices/ch02-lab-not-working.txt
+  329  oc delete all --selector app=hello-java
+  330  vi Containerfile 
+  331  exit
+  332  vi temp
+  333  exit
+  334  podman login quay.io
+  335  exit
+  336  oc login -u$U -p$P $A
+  337  vi .bashrc 
+  338  vi .bashrc
+  339  exit
+  340  exit
+  341  oc new-project $U-build-app
+  342  cd ~/DO288/DO288/labs/build-app/
+  343  ls -ltr
+  344  cat oc-new-app.sh 
+  345  oc new-app --name simple --build-env     npm_config_registry=http://invalid-server:8081/repository/nodejs     https://github.com/${RHT_OCP4_GITHUB_USER}/DO288-apps     --context-dir build-app
+  346  oc get bc
+  347  oc logs -f bc/simple
+  348  cat oc-new-app.sh 
+  349  vi ~/.bashrc 
+  350  grep NEXUS ~/.bashrc 
+  351  oc new-app --name simple --build-env     npm_config_registry=http://nexus-common.apps.ap46.prod.nextcle.com:8081/repository/nodejs     https://github.com/${RHT_OCP4_GITHUB_USER}/DO288-apps     --context-dir build-app
+  352  oc logs -f bc/simple
+  353  oc get all
+  354  oc delete deployment/simple
+  355  oc delete build/simple
+  356  oc delete all --all
+  357  oc new-app --name simple --build-env     npm_config_registry=http://nexus-common.apps.ap46.prod.nextcle.com:8081/repository/nodejs     https://github.com/${RHT_OCP4_GITHUB_USER}/DO288-apps     --context-dir build-app
+  358  oc logs -f bc/simple
+  359  exit
+  360  exit
+  361  ls -ltr
+  362  cd DO288/
+  363  ls -ltr
+  364  ls -ltr ocp-apps/
+  365  ls -ltr ocp-apps/ocp-apps/
+  366  ls -ltr DO288-apps/
+  367  ls -l ocp-apps/ocp-apps/
+  368  ls -l DO288-apps/
+  369  helm install --help
+  370  helm install --help | more
+  371  cd DO288-exercices/
+  372  helm install mariadb
+  373  oc new-project $U-review-todo
+  374  helm install mariadb
+  375  helm create todo-list
+  376  ls -ltr
+  377  cd todo-list/
+  378  ls -ltr
+  379  vi Chart.yaml 
+  380  vi values.yaml 
+  381  tree .
+  382  vi Chart.yaml 
+  383  helm dependancy update
+  384  vi Chart.yaml 
+  385  helm dependency update
+  386  vi Chart.yaml 
+  387  cd ../../
+  388  find . -name "helm*" 
+  389  cd ..
+  390  find . -name "helm*" 
+  391  cd ./DO288/ocp-apps/ocp-apps/helm-demo
+  392  ls -ltr
+  393  ls -ltr famousquotes/
+  394  vi famousquotes/Chart.yaml 
+  395  cd ../../
+  396  cd ..
+  397  find . -name famousquotes
+  398  cd DO288-exercices/
+  399  ls -ltr
+  400  cd todo-list/
+  401  ls -ltr
+  402  cd ..
+  403  mkdir comprehensive-todo
+  404  mv -r todo-list/ comprehensive-todo/
+  405  mv todo-list/ comprehensive-todo/
+  406  cd comprehensive-todo/
+  407  ls -ltr
+  408  cd todo-list/
+  409  vi Chart.yaml 
+  410  helm dependency update 
+  411  cat Chart.yaml 
+  412  viii Chart.yaml 
+  413  helm dependency update 
+  414  vi Chart.yaml 
+  415  helm dependency update 
+  416  cd
+  417  ls -ltr
+  418  cd s2i-do288-httpd/
+  419  ls -ltr
+  420  cd ../s2i-sample-app/
+  421  ls -ltr
+  422  cd ../s2i-go-app/
+  423  ls -ltr
+  424  ls -ltr upload/
+  425  ls -ltr downloads/
+  426  cd..
+  427  cd 
+  428  find . -name "Charts.yaml"
+  429  ls -ltr DO288/DO288-exercices/comprehensive-todo/
+  430  ls -ltr DO288/DO288-exercices/comprehensive-todo/todo-list/
+  431  find . -name Chart.yaml
+  432  vi ./DO288/DO288/labs/multicontainer-helm/famouschart/Chart.yaml
+  433  cd DO288/DO288-exercices/comprehensive-todo/todo-list/
+  434  vi Chart.yaml 
+  435  helm dependency update
+  436  history
+  437  oc projects
+  438  oc login -u $U -p $P $A
+  439  exit
+  440  exit
+  441  oc get all
+  442  oc debug deplyment/httpd-1
+  443  oc debug deployment.apps/httpd-1
+  444  exit
+  445  exit
+  446  cd DO288/DO288-apps/
+  447  ls -ltr
+  448  cd container-build/
+  449  ls -ltr
+  450  podmn build -t quay.io/sthrivi_00/do288-apache .
+  451  podman build -t quay.io/sthrivi_00/do288-apache .
+  452  podman push quay.io/sthrivi_00/do288-apache
+  453  cat /run/user/1000/containers/auth.json 
+  454  podman login quay.io
+  455  podman rmi -a
+  456  podman build -t quay.io/sthrivik_00/do288-apache .
+  457  podman push quay.io/sthrivik_00/do288-apache
+  458  oc new-app --name=hola quay.io/sthrivik_00/do288-apache
+  459  oc new-app --name hola quay.io/${RHT_OCP4_QUAY_USER}/do288-apache
+  460  podman push quay.io/sthrivik_00/do288-apache
+  461  oc new-app --name=hola quay.io/sthrivik_00/do288-apache
+  462  skopeo delete quay.io/sthrivik_00/do288-apache
+  463  podman rmi -a
+  464  podman build --format=docker -t quay.io/sthrivik_00/do288-apache .
+  465  podman push quay.io/sthrivik_00/do288-apache
+  466  oc new-app --name=hola quay.io/sthrivik_00/do288-apache
+  467  watch oc get pods
+  468  oc get deployment
+  469  oc get pds
+  470  oc get pods
+  471  oc logs -f pods/hola-785d4c8cf6-58tts
+  472  oc debug deploy/hola
+  473  cd ~/DO288/DO288/labs/container-build/
+  474  ls -ltr
+  475  cd httpd-parent/
+  476  grep ENTRY Containerfile 
+  477  vi Containerfile 
+  478  grep CMD Containerfile 
+  479  oc debug deploy/hola
+  480  vi Containerfile 
+  481  oc get all --show-labels
+  482  oc delete all --label=app=hola
+  483  oc delete all --selector=app=hola
+  484  oc gt all --all
+  485  oc get all --all
+  486  oc get all
+  487  cd ~/DO288/DO288-apps/container-build/
+  488  vi Containerfile 
+  489  cat ~/DO288/DO288/solutions/container-build/Containerfile 
+  490  diff Containerfile ~/DO288/DO288/solutions/container-build/Containerfile
+  491  cat ~/DO288/DO288/solutions/container-build/Containerfile 
+  492  vi Containerfile 
+  493  podman rmi -a
+  494  history | grep build
+  495  podman build --format=docker -t quay.io/sthrivik_00/do288-apache .
+  496  podman push quay.io/sthrivik_00/do288-apache
+  497  oc new-app --name=hola quay.io/sthrivik_00/do288-apache
+  498  watch oc get pods
+  499  oc expose svc/hola
+  500  oc get route
+  501  curl hola-edkqjw-container-build.apps.ap46a.prod.ole.redhat.com
+  502  oc get pods
+  503  oc logs pods/hola-5b944bc4b6-rzmcl
+  504  oc logs -f pods/hola-5b944bc4b6-rzmcl
+  505  oc get route
+  506  oc delete all --all
+  507  git branch
+  508  git status
+  509  git add Containerfile 
+  510  git commit -m "ch02gEx01"
+  511  git push
+  512  cat ~/gitToken 
+  513  git push
+  514  oc new-app --name=hola https://github.com/sthrivik-00/container-build#container-build --context-dir=container-build
+  515  oc new-app --name=hola https://github.com/sthrivik-00/DO288-apps#container-build --context-dir=container-build
+  516  oc new-app --name=hola quay.io/sthrivik_00/do288-apache
+  517  oc expose svc/hola --port=8080
+  518  oc get pods
+  519  oc get route
+  520  curl hola-edkqjw-container-build.apps.ap46a.prod.ole.redhat.com
+  521  ls -ltr ~/DO288/DO288-exercices/ch02*
+  522  history > /home/smitha/DO288/DO288-exercices/ch02gEx01.txt

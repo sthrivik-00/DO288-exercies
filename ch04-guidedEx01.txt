@@ -1,0 +1,64 @@
+    1  cd
+    2  cd ~/DO288/DO288-apps/
+    3  git checkout main
+    4  git checkout -b manage-builds
+    5  git push -u origin manage-builds
+    6  cd java-serverhost/src/
+    7  main/java/com/redhat/training/example/javaserverhost/rest/
+    8  cd java-serverhost/src/main/java/com/redhat/training/example/javaserverhost/rest/
+    9  pwd
+   10  cd main/java/com/redhat/training/example/javaserverhost/rest/
+   11  ls -ltr
+   12  vi ServerHostEndPoint.java 
+   13  oc new-project ${RHT_OCP4_DEV_USER}-manage-builds
+   14  oc new-app --name=jhost --build-env=MAVEN_MIRROR_URL=http://
+   15  oc new-app --name=jhost --build-env=MAVEN_MIRROR_URL=http://${RHT_OCP4_NEXUS_SERVER}/repository/java --image-stream=redhat-openjdk18-openshift:1.8 https://github.com/sthrivik-00/DO288-apps#manage-builds --context-dir=java-serverhost
+   16  cd ~/DO288/DO288/labs/manage-builds/
+   17  ls -ltr
+   18  cat oc-new-app.sh 
+   19  ./oc-new-app.sh 
+   20  cat oc-new-app.sh 
+   21  oc new-app     --name jhost     --build-env MAVEN_MIRROR_URL=http://${RHT_OCP4_NEXUS_SERVER}/repository/java     -i redhat-openjdk18-openshift:1.8     --context-dir java-serverhost     https://github.com/${RHT_OCP4_GITHUB_USER}/DO288-apps#manage-builds 
+   22  git status
+   23  pwd
+   24  cd ~/DO288/DO288-apps/
+   25  git status
+   26  cat hello-java/Containerfile 
+   27  git status
+   28  git restore hello-java/Containerfile
+   29  git status
+   30  git push -u origin manage-builds
+   31  git pull
+   32  git pull origin manage-builds
+   33  git push -u origin manage-builds
+   34  oc new-app     --name jhost     --build-env MAVEN_MIRROR_URL=http://${RHT_OCP4_NEXUS_SERVER}/repository/java     -i redhat-openjdk18-openshift:1.8     --context-dir java-serverhost     https://github.com/${RHT_OCP4_GITHUB_USER}/DO288-apps#manage-builds 
+   35  oc get bc
+   36  oc logs -f bc/jhost
+   37  oc get pods
+   38  oc expose svc/jhost
+   39  oc get route
+   40  curl jhost-edkqjw-manage-builds.apps.ap46a.prod.ole.redhat.com
+   41  oc get bc
+   42  cd java-serverhost/src/main/java/com/redhat/training/example/javaserverhost/rest/
+   43  vi ServerHostEndPoint.java 
+   44  cd -
+   45  git stauts
+   46  git status
+   47  git add java-serverhost/src/main/java/com/redhat/training/example/javaserverhost/rest/ServerHostEndPoint.java
+   48  git commit -m "manage-build change in version"
+   49  git push
+   50  oc get build
+   51  oc get bs
+   52  oc get bc
+   53  oc start-build
+   54  oc start-build bc/jhost
+   55  oc get bc
+   56  oc get pods
+   57  oc logs-f bc/jhos
+   58  oc logs -f bc/jhost
+   59  oc get pods
+   60  curl jhost-edkqjw-manage-builds.apps.ap46a.prod.ole.redhat.com
+   61  oc get pods
+   62  curl jhost-edkqjw-manage-builds.apps.ap46a.prod.ole.redhat.com
+   63  ls -ltr ~/DO288/DO288-exercices/ch03-guidedEx0*
+   64  history > ~/DO288/DO288-exercices/ch04-guidedEx01.txt

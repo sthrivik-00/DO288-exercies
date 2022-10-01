@@ -1,0 +1,32 @@
+    1  cd DO288/DO288-apps/ubi-echo/
+    2  vi Dockerfile 
+    3  oc new-project $U-docker-build
+    4  oc new-app -h
+    5  oc new-app -h | more
+    6  git checkout docker-build
+    7  git push -u origin docker-build
+    8  oc new-app --name=echo https://github.com/sthrivik-00/DO288-apps#docker-build --context-dir=ubi-echo
+    9  oc get bc
+   10  oc logs -f bc/echo
+   11  oc status
+   12  oc get pod
+   13  oc logs -f pod/echo-77bbf5dbc7-8mmg5
+   14  oc describe bc/echo
+   15  oc get is
+   16  vi Dockerfile 
+   17  git status
+   18  git add Dockerfile 
+   19  git commit -m "Changed ubi-echo/Dockerfile to original"
+   20  git push
+   21  git status
+   22  oc get build
+   23  oc start-build echo
+   24  oc log -f bc/echo
+   25  oc logs -f bc/echo
+   26  oc get pods
+   27  oc logs -f pod/echo-86d65dddd6-rlggs
+   28  oc describe bc/echo-2
+   29  oc describe bc/echo
+   30  cd ..
+   31  ls -ltr
+   32  history > ch01-guided-ex-02-docker-build

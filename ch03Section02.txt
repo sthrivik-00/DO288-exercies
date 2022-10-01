@@ -1,0 +1,23 @@
+  474  oc login -u $U -p $P $A
+  475  oc new-project trial
+  476  oc new-app --name=bitginx quay.io/sthrivik_00/bitnami-nginx
+  477  oc new-app --name=bitginx --creds sthrivik_00:Nik1206GH quay.io/sthrivik_00/bitnami-nginx
+  478  podman login quay.io
+  479  oc create secret generic quayio --from-file .dockerconfigjson=/run/user/1000/containers/auth.json --type=kubernetes.io/dockerconfigjson
+  480  oc secret link --help | more
+  481  oc secrets link default quayio --for=pull
+  482  oc get sa
+  483  oc new-app --name=bitginx --creds sthrivik_00:Nik1206GH quay.io/sthrivik_00/bitnami-nginx
+  484  oc new-app --name=bitginx quay.io/sthrivik_00/bitnami-nginx
+  485  oc get is
+  486  oc whoami -t
+  487  AUTH=`oc whoami -t`
+  488  echo $SUTH
+  489  echo $AUTH
+  490  podman pull default-route-openshift-image-registry.apps.na46a.prod.ole.redhat.com/trial/bitginx:latest
+  491  oc get route -n openshift-image-registry
+  492  podman login -u$U -p$AUTH default-route-openshift-image-registry.apps.na46a.prod.ole.redhat.com
+  493  cat /run/user/1000/containers/auth.json 
+  494  podman pull default-route-openshift-image-registry.apps.na46a.prod.ole.redhat.com/trial/bitginx:latest
+  495  history 
+  496  history > ~/DO288/DO288-exercices/ch03Section02.txt

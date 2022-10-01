@@ -1,0 +1,9 @@
+    1  oc new-project $U-deploy-image
+    2  oc project
+    3  oc projects
+    4  oc project $U-deploy-image
+    5  oc get all
+    6  oc new-app -h
+    7  oc new-app -h | more
+    8  oc new-app --name=hello --image=quay.io/redhattraining/php-hello-dockerfile
+    9  history > ~/DO288/DO288-apps/ch01-guided-ex03-deploy-image

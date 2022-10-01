@@ -1,0 +1,42 @@
+    1  oc new-project ${RHT_OCP4_DEV_USER}-probes
+    2  oc project
+    3  oc new-app --name=probes nodejs:12~https://github.com/sthrivik_00/DO288-apps --context-dir=probes --build-env npm_config_registry, value: http://${RHT_OCP4_NEXUS_SERVER}/repository/nodejs
+    4  oc new-app --name=probes nodejs:12~https://github.com/sthrivik_00/DO288-apps --context-dir=probes --build-env npm_config_registry=http://${RHT_OCP4_NEXUS_SERVER}/repository/nodejs
+    5  oc logs -f bc/probes
+    6  oc new-app --name=probes nodejs:12~https://github.com/sthrivik-00/DO288-apps --context-dir=probes --build-env npm_config_registry=http://${RHT_OCP4_NEXUS_SERVER}/repository/nodejs
+    7  oc delete all --all
+    8  oc new-app --name=probes nodejs:12~https://github.com/sthrivik-00/DO288-apps --context-dir=probes --build-env npm_config_registry=http://${RHT_OCP4_NEXUS_SERVER}/repository/nodejs
+    9  oc logs -f bc/probes
+   10  oc get pods
+   11  oc expose svc/probes
+   12  oc get route
+   13  curl probes-edkqjw-probes.apps.ap46a.prod.ole.redhat.com/ready
+   14  curl probes-edkqjw-probes.apps.ap46a.prod.ole.redhat.com/healthz
+   15  curl probes-edkqjw-probes.apps.ap46a.prod.ole.redhat.com
+   16  oc set probe --help | more
+   17  oc get dc
+   18  oc get deploy
+   19  oc set probe --help | more
+   20  oc set probe deploy/probes --readiness --initial-delay-seconds=2 --timeout-seconds=2
+   21  oc get deploy
+   22  oc set probe deployment/probes --readiness --initial-delay-seconds=2 --timeout-seconds=2
+   23  oc set probe deployment/probes --readiness --initial-delay-seconds=2 --timeout-seconds=2 --get-url=http://:8080/ready
+   24  oc set probe deployment/probes --liveness --initial-delay-seconds=2 --timeout-seconds=2 --get-url=http://:8080/healthz
+   25  oc describe deployment/probes | grep probe
+   26  oc describe deployment/probes | grep liveness
+   27  oc describe deployment/probes | grep -i liveness
+   28  oc describe deployment/probes | grep -i readiness
+   29  oc get pods
+   30  oc logs -f probes-5f778f6fb5-q2hx8
+   31  oc get pods 
+   32  oc get pods --no-header -w build 
+   33  oc get pods --no-headers -w build 
+   34  oc get pods --no-headers -v build 
+   35  oc get pods --no-headers | grep -v build 
+   36  oc get pods --no-headers | grep -v build | cut -d"" -f1
+   37  oc get pods --no-headers | grep -v build | cut -d""
+   38  oc get pods -o name
+   39  oc get pods -o name | grep -v build
+   40  oc get pods --no-headers | grep -v build | cut -d" " -f1
+   41  oc logs -f ${oc get pods --no-headers | grep -v build | cut -d" " -f1}
+   42  oc logs -f `oc get pods --no-headers | grep -v build | cut -d" " -f1`

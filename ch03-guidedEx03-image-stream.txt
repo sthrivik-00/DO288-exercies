@@ -1,0 +1,23 @@
+    1  oc login -u$U -p$P $A
+    2  oc project $U-common
+    3  oc new-projct $U-common
+    4  oc new-project $U-common
+    5  skopeo inspect quay.io/redhattraining/hello-world-nginx | less
+    6  skopeo inspect docker://quay.io/redhattraining/hello-world-nginx
+    7  skopeo inspect docker://quay.io/redhattraining/hello-world-nginx | less
+    8  oc import-image --help | more
+    9  oc import-image --from=quay.io/redhattraining/hello-world-nginx --confirm
+   10  oc import-image --from=quay.io/redhattraining/hello-world-nginx:latest --confirm
+   11  oc import-image hello-world --from=quay.io/redhattraining/hello-world-nginx:latest --confirm
+   12  oc get is -n $U-common
+   13  oc get istag
+   14  oc describe is/hello-world | less
+   15  oc describe is/hello-world 
+   16  oc new-project $U-image-stream
+   17  oc new-app --help | more
+   18  oc new-app name=hello-world --image-stream=$U-common/hello-world
+   19  oc get pods
+   20  oc expose svc/hello-world
+   21  oc get route
+   22  curl hello-world-edkqjw-image-stream.apps.ap46a.prod.ole.redhat.com
+   23  history > ~/DO288/DO288-exercices/ch03-guidedEx03-image-stream.txt

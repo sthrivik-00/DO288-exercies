@@ -1,0 +1,17 @@
+    1  cd DO288/DO288-apps/
+    2  git checkout source-build
+    3  git push -u origin source-build
+    4  git checkout origin
+    5  cd nodejs-helloworld/
+    6  ls -l
+    7  oc new-project $U-source-build
+    8  oc new-app --name=greet https://github.com/sthrivik-00/DO288-apps#source-build --context-dir=nodejs-helloworld
+    9  oc get bc
+   10  oc logs -f bc/greet
+   11  oc get pods
+   12  oc expose svc/greet
+   13  oc get route
+   14  curl greet-oycwev-source-build.apps.ap46a.prod.ole.redhat.com
+   15  vi package.json
+   16  cat package.json 
+   17  history > ~/DO288/DO288-exercices/ch01-lab.txt
