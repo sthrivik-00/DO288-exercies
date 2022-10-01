@@ -1,0 +1,21 @@
+    1  oc login -u$U -p$P $A
+    2  oc new-project ch06-workedEx01
+    3  oc new-project ch06workedEx01
+    4  oc new-project $U-ch06workedEx01
+    5  oc new-project coffee-shop
+    6  cd DO288/
+    7  mkdir rgdacosta
+    8  cd rgdacosta/
+    9  git init
+   10  git clone git@gitlab.com:rgdacosta/helm_coffee_shop.git
+   11  helm install coffee-shop .
+   12  cd helm_coffee_shop/
+   13  helm install coffee-shop .
+   14  oc get deployment
+   15  oc get pods
+   16  oc get svc
+   17  oc expose svc/coffee-shop
+   18  oc get route
+   19  curl coffee-shop-coffee-shop.apps.na46a.prod.ole.redhat.com
+   20  firefox coffee-shop-coffee-shop.apps.na46a.prod.ole.redhat.com &
+   21  history > ~/DO288/DO288-exercices/ch06Section01.txt 

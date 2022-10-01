@@ -1,0 +1,49 @@
+    1  cd DO288/DO288-exercices/
+    2  mkdir famous-kustomize
+    3  cd famous-kustomize/
+    4  oc login -u$U -p$P $A
+    5  oc new-project $U-multicontainer-kustomize
+    6  cp ~/DO288/DO288/labs/multicontainer-kustomize/famous-quotes.yaml .
+    7  ls -ltr
+    8  mkdir base
+    9  cp famous-quotes.yaml base/deployment.yaml
+   10  vi base/kustomization.yaml
+   11  oc apply -k base/
+   12  oc get svc
+   13  oc get pods
+   14  watch -n2 oc get pods
+   15  oc logs -f famousapp-famouschart-6c4b649dfd-xbb2p
+   16  vi base/kustomization.yaml 
+   17  watch -n2 oc get pods
+   18  oc expose svc/famousapp-famouschart
+   19  oc get route 
+   20  curl famousapp-famouschart-mbtacz-multicontainer-kustomize.apps.na46a.prod.ole.redhat.com/random
+   21  oc get pods
+   22  oc get deployment
+   23  oc logs -f famousapp-famouschart-test-connection
+   24  vi base/deployment.yaml 
+   25  oc delete all --all
+   26  oc apply -k base/
+   27  oc get route
+   28  oc expose service/famousapp-famouschart
+   29  oc get pods
+   30  watch -n2 oc get pods
+   31  oc get route
+   32  curl famousapp-famouschart-mbtacz-multicontainer-kustomize.apps.na46a.prod.ole.redhat.com/random
+   33  oc get route
+   34  oc get pods
+   35  curl famousapp-famouschart-mbtacz-multicontainer-kustomize.apps.na46a.prod.ole.redhat.com/random
+   36  mkdir overlays/dev
+   37  mkdir -p overlays/dev
+   38  vi overlays/dev/replica_limits.yaml
+   39  vi overlays/dev/kustomization.yaml
+   40  oc apply -k overlays/dev/
+   41  vi overlays/dev/kustomization.yaml
+   42  oc apply -k overlays/dev/
+   43  curl famousapp-famouschart-mbtacz-multicontainer-kustomize.apps.na46a.prod.ole.redhat.com/random
+   44  oc get deployments
+   45  oc get deployments/famousapp-famouschart -o yaml | grep memory
+   46  curl famousapp-famouschart-mbtacz-multicontainer-kustomize.apps.na46a.prod.ole.redhat.com/random
+   47  oc get pods
+   48  curl famousapp-famouschart-mbtacz-multicontainer-kustomize.apps.na46a.prod.ole.redhat.com/random
+   49  history > ~/DO288/DO288-exercices/ch06-guidedEx02.txt
