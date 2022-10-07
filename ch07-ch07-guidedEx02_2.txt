@@ -1,0 +1,39 @@
+    1  oc new-project $U-strategy
+    2  oc project $U-strategy
+    3  oc delete all --all
+    4  oc new-app --name=mysql -e MYSQL_USER=test -e MYSQL_PASSWORD=redhat -e MYSQL_DATABASE-testdb -e MYSQL_AIO=0 -i registry.redhat.io/rhel8/mysql-80 --as-deployment-config
+    5  oc new-app --name=mysql -e MYSQL_USER=test -e MYSQL_PASSWORD=redhat -e MYSQL_DATABASE=testdb -e MYSQL_AIO=0 -i registry.redhat.io/rhel8/mysql-80 --as-deployment-config
+    6  oc new-app --name=mysql -e MYSQL_USER=test -e MYSQL_PASSWORD=redhat -e MYSQL_DATABASE=testdb -e MYSQL_AIO=0 registry.redhat.io/rhel8/mysql-80 --as-deployment-config
+    7  watch oc get pods
+    8  oc edit dc/mysql
+    9  watch oc get pods
+   10  ~/DO288/DO288/labs/strategy/post-hook.sh 
+   11  watch oc get pods
+   12  cat ~/DO288/DO288/labs/strategy/post-hook.sh 
+   13  oc edit dc/mysql
+   14  oc rollout latest dc/mysql
+   15  watch oc get pods
+   16  oc get pods
+   17  oc logs -f pods/mysql-2-deploy
+   18  cd ~/DO288/DO288/labs/strategy/
+   19  ls -ltr
+   20  grep -il retry *
+   21  grep -il retr *
+   22  vi import.sh 
+   23  oc get env dc/mysql
+   24  oc get dc/mysql -o yaml | more
+   25  oc get config
+   26  oc get --help | more
+   27  oc set --help | more
+   28  vi import.sh 
+   29  oc set env dc/mysql HOOK_RETRIES=5
+   30  watch oc get pods
+   31  oc get dc/mysql -o yaml | more
+   32  oc et pods
+   33  oc get pods
+   34  oc rsh mysql-3-dsp2b
+   35  ls -ltr
+   36  cat import.sh 
+   37  cat users.sql 
+   38  oc rsh mysql-3-dsp2b
+   39  history > ~/DO288/DO288-exercices/ch07-ch07-guidedEx02_2.txt
