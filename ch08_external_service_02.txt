@@ -1,0 +1,29 @@
+    4  oc login -u$U -p$P $A
+    5  oc new-project $U-external-service
+    6  ls -ltr
+    7  cd ~/DO288/labs/
+    8  ls -ltr
+    9  lab external-service start
+   10  ls -ltr
+   11  cd external-service/
+   12  ./oc-new-app.sh 
+   13  oc logs -f buildconfig/todoapp
+   14  oc get pods
+   15  oc rsh todoapp-1-j4s2v env | grep DATABASE
+   16  echo $W
+   17  echo $WC
+   18  vi ~/.bashrc 
+   19  oc get svc
+   20  oc expose svc/todoapp
+   21  oc get route
+   22  curl http://todoapp-mbtacz-external-service.apps.na46a.prod.ole.redhat.com/todo/api/items/6
+   23  echo $A
+   24  cat ~/.bashrc | grep WILD
+   25  cat ~/.bashrc | grep example
+   26  dbhost=$(echo \
+mysql.ocp-${RHT_OCP4_WILDCARD_DOMAIN#"apps."})
+   27  echo $dbhost
+   28  oc create svc externalname tododb  --external-name=$dbhost
+   29  oc get svc
+   30  curl http://todoapp-mbtacz-external-service.apps.na46a.prod.ole.redhat.com/todo/api/items/6
+   31  history > ~/DO288-exercies/ch08_external_service_02.txt 

@@ -1,67 +1,30 @@
-    1  ls -ltr
-    2  find . -name famous*
-    3  cd DO288/DO288-exercices/
-    4  history
-    5  helm install famouschart
-    6  helm create famouschart
-    7  cd famouschart/
-    8  tree .
-    9  vi values.yaml 
-   10  vi templates/deployment.yaml 
-   11  vi Chart.yaml 
-   12  cat ~/DO288/DO288/labs/multicontainer-helm/dependencies.yaml >> Chart.yaml 
-   13  vi Chart.yaml 
-   14  helm dependency update
-   15  vi Chart.yaml 
-   16  helm dependency update
-   17  vi ~/DO288/DO288/labs/multicontainer-helm/dependencies.yaml 
-   18  cat ~/DO288/DO288/labs/multicontainer-helm/mariadb.yaml >> values.yaml 
-   19  vi values.yaml 
-   20  vi templates/deployment.yaml 
-   21  cat ~/DO288/DO288/labs/multicontainer-helm/env.yaml >> values.yaml 
-   22  oc loginnnn -u$U -p$P $A
-   23  oc login -u$U -p$P $A
-   24  oc new-project ${RHT_OCP4_DEV_USER}-multicontainer-helm
-   25  ls -ltr
-   26  helm install famouschart .
-   27  watch oc get pods
-   28  oc get pods
-   29  oc logs -f famouschart-7cf76d469-98qd2
-   30  vi templates/deployment.yaml 
-   31  grep -r quotesdb
-   32  oc get pods
-   33  oc get deployment
-   34  oc logs -f deployment/famouschart
-   35  vi values.yaml 
-   36  grep -r famousapp-mariadb *
-   37  vi values.yaml 
-   38  grep -r 172.30.0.10 *
-   39  oc get deployment/famouschart -o yaml > dep.yaml
-   40  vi dep.yaml 
-   41  oc delete all --all
-   42  cd ..
-   43  cd
-   44  find . -name famouschart
-   45  ls -ltr ./DO288/DO288/solutions/multicontainer-helm/famouschart
-   46  ls -ltr ./DO288/DO288/solutions/multicontainer-helm/famouschart/templates/deployment.yaml 
-   47  diff ./DO288/DO288/solutions/multicontainer-helm/famouschart/templates/deployment.yaml DO288/DO288-exercices/famouschart/templates/deployment.yaml 
-
-# The deployment was not successful. Diff with labs deployment.yaml file showed that the imapgPullPolicy env required a space before closing braces 
- 
-   48  vi DO288/DO288-exercices/famouschart/
-   49  cd DO288/DO288-exercices/famouschart/
-   50  vi templates/deployment.yaml 
-   51  diff ~/DO288/DO288/solutions/multicontainer-helm/famouschart/templates/deployment.yaml templates/deployment.yaml 
-   52  helm install famousapp .
-   53  oc get deployment
-   54  watch oc get pods
-   55  oc get deployment
-   56  oc get pods
-   57  watch oc get pods
-   58  oc get pods
-   59  oc get deployment
-   60  oc get svc
-   61  oc expose svc/famousapp-famouschart
-   62  oc get route
-   63  curl famousapp-famouschart-mbtacz-multicontainer-helm.apps.na46a.prod.ole.redhat.com/random
-   64  history > ../ch06-guidedEx01_working2.txt
+    1  lab probes start
+    2  oc new-project $U-probes
+    3  oc new-app --name=probes --build-env npm_config_registry=${RHT_OCP4_NEXUS_SERVER}/repository/nodejs nodejs:12~https://github.com/sthrivik-00/DO288-apps --context-dir=probes
+    4  oc logs -f buildconfig/probes
+    5  oc get pods
+    6  oc expose svc/probeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeees
+    7  oc expose svc/probes
+    8  oc get route
+    9  curl probes-mbtacz-probes.apps.na46a.prod.ole.redhat.com
+   10  curl probes-mbtacz-probes.apps.na46a.prod.ole.redhat.com/ready
+   11  curl probes-mbtacz-probes.apps.na46a.prod.ole.redhat.com/healthz
+   12  oc set probe --help | more
+   13  oc get dc
+   14  oc set probe deployment/probe --readiness --get-url=http://:8080/ready --initial-delay-seconds=2 ---timeout-seconds=2
+   15  oc get deployment
+   16  oc set probe deployment/probes --readiness --get-url=http://:8080/ready --initial-delay-seconds=2 ---timeout-seconds=2
+   17  oc set probe deployment/probes --readiness --get-url=http://:8080/ready --initial-delay-seconds=2 -timeout-seconds=2
+   18  oc set probe deployment/probes --readiness --get-url=http://:8080/ready --initial-delay-seconds=2 --timeout-seconds=2
+   19  oc set probe deployment/probes --liveness --get-url=http://:8080/healthz --initial-delay-seconds=2 --timeout-seconds=2
+   20  oc describe deployment/probes | grep -i readiness
+   21  oc describe deployment/probes | grep -i liveness
+   22  oc describe deployment/probes | grep -i liveness|readiness
+   23  c get pods
+   24  oc get pods
+   25  curl probes-mbtacz-probes.apps.na46a.prod.ole.redhat.com/healthz
+   26  oc logs -f probes-6544b94c64-gcbv5
+   27  oc get pods
+   28  watch oc get pods
+   29  oc logs -f pod/probes-6544b94c64-gcbv5
+   30  history > ~/DO288-exercies/ch06-guidedEx01_working2.txt
