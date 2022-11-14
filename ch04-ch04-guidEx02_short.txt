@@ -1,0 +1,32 @@
+    1  oc login -u$U -p$P $A
+    2  cd DO288/DO288-apps/
+    3  git branch
+    4  git checkout -b app-config
+    5  git push -u origin app-config
+    6  cat ~/gitToken 
+    7  git push -u origin app-config
+    8  cd app-config/
+    9  ls -ltr
+   10  oc new-project $U-app-config
+   11  oc new-app --name=myapp https://github.com/sthrivik-00/DO288-apps#app-config --context-dir=app-config
+   12  oc logs -f buildconfig/myapp
+   13  oc expose svc/myapp
+   14  oc get route
+   15  curl myapp-mbtacz-app-config.apps.na46a.prod.ole.redhat.com
+   16  oc set env cm mycm --from-literal APP_MSG="TEST MSG"
+   17  oc setenv cm --help | more
+   18  oc set env cm --help | more
+   19  oc create cm --help | more
+   20  oc create cm mycm --from-literal APP_MSG="test msg"
+   21  oc set env --help | more
+   22  oc set env --from cm/mycm deployment/myapp
+   23  curl myapp-mbtacz-app-config.apps.na46a.prod.ole.redhat.com
+   24  ls -ltr
+   25  pwd
+   26  oc create secret generic mysec --from-file /home/smitha/DO288/DO288-apps/app-config/myapp.sec 
+   27  oc set-volume --help | more
+   28  oc set volume --help | more
+   29  oc set volume deployment/myapp --add --mount-path /opt/app-root/secure/ --secret-name=mysec
+   30  curl myapp-mbtacz-app-config.apps.na46a.prod.ole.redhat.com
+   31  history
+   32  history > ~/DO288/DO288-exercices/ch04-ch04-guidEx02_short.txt

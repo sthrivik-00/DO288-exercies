@@ -1,0 +1,17 @@
+    1  oc get route -n openshift-registry
+    2  oc get route -n openshift-image-registry
+    3  oc get route -n openshift-image-registry --no-headers
+    4  oc get route -n openshift-image-registry --no-headers | cut -d " " -f4
+    5  ROUTE=${oc get route -n openshift-image-registry --no-headers | cut -d " " -f4}
+    6  ROTE=`oc get route -n openshift-image-registry --no-headers | cut -d " " -f4`
+    7  echo $ROTE
+    8  oc whoami -t
+    9  TOK=`oc whoami -t`
+   10  echo $TOK
+   11  oc get is
+   12  podman login -u$U -p$TOK $ROTE
+   20  podman run -d --name=myapp default-route-openshift-image-registry.apps.na46a.prod.ole.redhat.com/mbtacz-app-config/myapp
+   21  podman images
+   22  podman ps
+   23  podman logs myapp
+   24  curl http://localhost:8080

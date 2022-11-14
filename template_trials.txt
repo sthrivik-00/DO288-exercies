@@ -1,0 +1,22 @@
+    1  oc new-project template-trials
+    2  oc get template -n openshift | grep dancer
+    3  oc process dancer-mysql-example -n openshift --parameters
+    4  oc create template --help | more
+    5  oc get dancer-mysql-example -n openshift -o yaml > dancer_mysql_template.yaml
+    6  oc get template dancer-mysql-example -n openshift -o yaml > dancer_mysql_template.yaml
+    7  vi dancer_mysql_template.yaml 
+    8  oc project
+    9  vi dancer_mysql_template.yaml 
+   10  oc create -f dancer_mysql_template.yaml 
+   11  oc process -f dancer_mysql_template.yaml | oc create -f
+   12  oc get template
+   13  oc process -f dancer_mysql_template.yaml | oc create -f -
+   14  watch -n2 oc get pods
+   15  oc get pods
+   16  oc logs -f bc/dancer-mysql-example
+   17  oc get pods
+   18  oc get svc
+   19  oc expose svc/dancer-mysql-example
+   20  oc get route
+   21  firefox dancer-mysql-example-template-trials.apps.na46a.prod.ole.redhat.com &
+   22  history > ~/DO288/DO288-exercices/template_trials.txt

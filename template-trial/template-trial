@@ -1,0 +1,22 @@
+    1  cd DO288/DO288-exercices/template-trial/
+    2  oc get template -n openshift | grep cakephp
+    3  oc get template cakephp-mysql-example -n openshift -o json > cakephp-mysql-example.json
+    4  vi cakephp-mysql-example.json 
+    5  grep namespace cakephp-mysql-example.json 
+    6  vi cakephp-mysql-example.json 
+    7  oc new-project template-trial
+    8  vi cakephp-mysql-example.json 
+    9  oc process -f cakephp-mysql-example.json
+   10  oc process -f cakephp-mysql-example.json -n template-trial
+   11  oc project
+   12  vi cakephp-mysql-example.json 
+   13  oc process -f cakephp-mysql-example.json -n template-trial
+   14  vi cakephp-mysql-example.json 
+   15  oc create -f cakephp-mysql-example.json 
+   16  oc new-app --name=myphp-mysql --template=cakephp-mysql-example -p NAME=myphp-mysql
+   17  oc logs -f buildconfig/myphp-mysql
+   18  oc get pods
+   19  oc get route
+   20  forefox myphp-mysql-template-trial.apps.na46a.prod.ole.redhat.com &
+   21  firefox myphp-mysql-template-trial.apps.na46a.prod.ole.redhat.com &
+   22  history > template-trial
